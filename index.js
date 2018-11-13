@@ -1,5 +1,6 @@
 const fetch = require('node-fetch'); // install from here https://www.npmjs.com/package/node-fetch
 const tokenfile = require("./token.json");
+const rules = require("./rules.json");
 const Discord = require("discord.js");
 require('events').EventEmitter.defaultMaxListeners = 300;
 const bot = new Discord.Client({disableEveryone: true})
@@ -121,7 +122,7 @@ function charCountLoop(array){
 		return charCountLoop(array)
 	} else { return array }
 }
-function factionListEmbed(message, cardList, cmd){
+function factionListEmbed(message, cardList, cmd, wave){
 	var champEmbed = new Discord.RichEmbed()
 	var blessEmbed = new Discord.RichEmbed()
 	var unitEmbed = new Discord.RichEmbed()
@@ -167,6 +168,10 @@ function factionListEmbed(message, cardList, cmd){
 	}
 	//set Author
 	var author = ""
+
+	if ( wave != null || wave != undefined ){
+		author += "wave " + cardList[0].set
+	}
 	for(i=0;i<cmd.length;i++){
 		var current = cmd[i].toLowerCase();
 		switch (current){
@@ -184,6 +189,7 @@ function factionListEmbed(message, cardList, cmd){
 				break
 		}
 		if(current === "exclusive" || current === "rare" || current === "uncommon" || current === "common"){
+			if ( author.length > 0 ){ author += " " }
 			author += current
 		}
 	}
@@ -293,23 +299,120 @@ function listOutput(message, cards, cmd){
 
 	if ( orderCards.length > 0 ) {
 		//message.channel.send('We have '+ orderCards.length +' order cards');
-		var orderEmbed = factionListEmbed(message,orderCards,cmd)
+		var orderSetCards = []
+		for(i=0;i<orderCards.length;i++){
+			if ( orderSetCards[orderCards[i].set-1] == undefined ){
+				orderSetCards.push([orderCards[i]])
+			} else {
+				orderSetCards[orderCards[i].set-1].push(orderCards[i])
+			}
+		}
+		if ( orderSetCards.legnth > 1 ) {
+			// if there are multiple sets
+			for(i=0;i<orderSetCards.length;i++){
+				factionListEmbed(message,orderSetCards[i],cmd,i+1)
+			}
+		} else {
+			factionListEmbed(message,orderSetCards[0],cmd)
+		}
 	}
 	if ( chaosCards.length > 0 ) {
 		//message.channel.send('We have '+ chaosCards.length +' chaos cards');
-		var chaosEmbed = factionListEmbed(message,chaosCards,cmd)
+		var chaosSetCards = []
+		for(i=0;i<chaosCards.length;i++){
+			if ( chaosSetCards[chaosCards[i].set-1] == undefined ){
+				chaosSetCards.push([chaosCards[i]])
+			} else {
+				chaosSetCards[chaosCards[i].set-1].push(chaosCards[i])
+			}
+		}
+		if ( chaosSetCards.legnth > 1 ) {
+			// if there are multiple sets
+			for(i=0;i<chaosSetCards.length;i++){
+				factionListEmbed(message,chaosSetCards[i],cmd,i+1)
+			}
+		} else {
+			factionListEmbed(message,chaosSetCards[0],cmd)
+		}
 	}
 	if ( deathCards.length > 0 ) {
 		//message.channel.send('We have '+ deathCards.length +' death cards');
-		var deathEmbed = factionListEmbed(message,deathCards,cmd)
+		var deathSetCards = []
+		for(i=0;i<deathCards.length;i++){
+			if ( deathSetCards[deathCards[i].set-1] == undefined ){
+				deathSetCards.push([deathCards[i]])
+			} else {
+				deathSetCards[deathCards[i].set-1].push(deathCards[i])
+			}
+		}
+		if ( deathSetCards.legnth > 1 ) {
+			// if there are multiple sets
+			for(i=0;i<deathSetCards.length;i++){
+				factionListEmbed(message,deathSetCards[i],cmd,i+1)
+			}
+		} else {
+			factionListEmbed(message,deathSetCards[0],cmd)
+		}
 	}
 	if ( destroCards.length > 0 ) {
 		//message.channel.send('We have '+ destroCards.length +' destro cards');
-		var destroEmbed = factionListEmbed(message,destroCards,cmd)
+		var destroSetCards = []
+		for(i=0;i<destroCards.length;i++){
+			if ( destroSetCards[destroCards[i].set-1] == undefined ){
+				destroSetCards.push([destroCards[i]])
+			} else {
+				destroSetCards[destroCards[i].set-1].push(destroCards[i])
+			}
+		}
+		if ( destroSetCards.legnth > 1 ) {
+			// if there are multiple sets
+			for(i=0;i<destroSetCards.length;i++){
+				factionListEmbed(message,destroSetCards[i],cmd,i+1)
+			}
+		} else {
+			factionListEmbed(message,destroSetCards[0],cmd)
+		}
 	}
 	if ( neutralCards.length > 0 ) {
 		//message.channel.send('We have '+ neutralCards.length +' neutral cards');
-		var neutralEmbed = factionListEmbed(message,neutralCards,cmd)
+		var neutralSetCards = []
+		for(i=0;i<neutralCards.length;i++){
+			if ( neutralSetCards[neutralCards[i].set-1] == undefined ){
+				neutralSetCards.push([neutralCards[i]])
+			} else {
+				neutralSetCards[neutralCards[i].set-1].push(neutralCards[i])
+			}
+		}
+		if ( neutralSetCards.legnth > 1 ) {
+			// if there are multiple sets
+			for(i=0;i<neutralSetCards.length;i++){
+				factionListEmbed(message,neutralSetCards[i],cmd,i+1)
+			}
+		} else {
+			factionListEmbed(message,neutralSetCards[0],cmd)
+		}
+	}
+}
+
+function findRule(message, findArray, cmd, rule){
+	var activeRule
+	if (rule == 'undefined' || rule == null){ activeRule = rules[findArray[0]] }
+	else { activeRule = rule[findArray[0]] }
+	
+	if ( typeof activeRule == "object" && findArray.length > 1 ) {
+		findArray.shift()
+		findRule(message,findArray,cmd,activeRule)
+	} else {
+		if ( activeRule == 'undefined' || activeRule == null ) {
+			message.channel.send("Invalid Rule Entry")
+		} else {
+			if (typeof activeRule == "object") {
+				message.channel.send("**Rule "+ cmd +":**  "+activeRule[0])
+			} else {
+				console.log(activeRule.length)
+				message.channel.send("**Rule "+ cmd +":**  "+activeRule)
+			}
+		}
 	}
 }
 
@@ -344,10 +447,10 @@ bot.on("message", async message => {
 			if (cmd === '+doot' || cmd === "+dootboy" || cmd === "+dootboi") { cmd = "+knight-heraldor"} 
 			console.log(cmd)
 			if (cmd.toLowerCase() === "help") {
-				return message.author.send("__**List of Possible Commands**__\n\n__Single Crads__\n\n[[searchPhrase]] : this command will search the API for the phrase you entered and send out a formatted embed based on the first matched card, if no match is found and invalid command message will be sent.\n[[+searchPhrase]] : this is the same as above except it returns the card image instead of formatted text, also returns invalid command message on no match.\n\n__List of Cards__\n\nA command starts off with list_ and then can have up to 3 (so far) tags put in after it.\nHere is an example command [[list_order_unit_common]], this will yeid a private message to you with the list cards that match your chosen tags.\nCurrent tags allowed are for Alliance, Category (card type), Rarity, and Tags(ie storcast, risen, orruck). For a list of accepted tags use [[list_tags]].")
+				message.author.send("__**List of Possible Commands**__\n\n__Single Cards__\n\n[[searchPhrase]] : this command will search the API for the phrase you entered and send out a formatted embed based on the first matched card, if no match is found and invalid command message will be sent.\n[[+searchPhrase]] : this is the same as above except it returns the card image instead of formatted text, also returns invalid command message on no match.\n\n__List of Cards__\n\nA command starts off with list_ and then can have up to 4 (so far) tags put in after it.\nHere is an example command [[list_order_unit_common]], this will yeid a private message to you with the list cards that match your chosen tags.\nCurrent tags allowed are for Alliance, Category (card type), Rarity, and Tags(ie storcast, risen, orruck). For a list of accepted tags use [[list_tags]].\n\n__Rule Command__ ***new***\n\nThe rules command is here to save you time on copying and pasting rules, as long as you know the rules code the bot can post it for you! An example command would be [[rule_2.7.3.2]] (\"rules\" is also accepted). You can also get the rules for keywords and game terms by simply putting the term after \"rule\", for example to see the rule for the Dormant Keyword you would put [[rule_dormant]].")
 			} else if(cmd.substring(0,5).toLowerCase() === "list_"){
 				if (cmd === "list_tags") {
-					return message.author.send("__**List Commands Tags**__\n\nexclusive(exclusives)\nrare(rares)\nuncommon(uncommons)\ncommon(commons)\norder\nchaos\ndeath\ndestruction\nany(unaligned)\nchampion(champions)\nblessing(blessings)\nunit(units)\nspell(spells)\nability(abilities)\nstormcast\norruk\nbeast\ndaemon\nunique\ngrot\nrisen\nstacking\naelf\nvampire\nmordant\nspirit\nvehicle\nall")
+					message.author.send("__**List Commands Tags**__\n\nexclusive(exclusives)\nrare(rares)\nuncommon(uncommons)\ncommon(commons)\norder\nchaos\ndeath\ndestruction\nany(unaligned)\nchampion(champions)\nblessing(blessings)\nunit(units)\nspell(spells)\nability(abilities)\nstormcast\norruk\nbeast\ndaemon\nunique\ngrot\nrisen\nstacking\naelf\nvampire\nmordant\nspirit\nvehicle\nogor\nset # (ie 1, 01, 2, or 02, putting \"wave\" infront of the # is also accepted)\nall")
 				} else {
 					//Detect if a cmd is asking for a list
 					var queryCmds = []
@@ -393,6 +496,15 @@ bot.on("message", async message => {
 							case "mordant":
 							case "spirit":
 							case "vehicle":
+							case "ogor":
+							case "1":
+							case "01":
+							case "2":
+							case "02":
+							case "wave1":
+							case "wave01":
+							case "wave2":
+							case "wave02":
 							case 'all':
 								cmdListsClean.push(cmdLists[i])
 								break;
@@ -493,6 +605,21 @@ bot.on("message", async message => {
 							case "vehicle":
 								queryCmds.push({ match: { tags: "Vehicle" } })
 								break;
+							case "ogor":
+								queryCmds.push({ match: { tags: "Ogor" } })
+								break;
+							case "1":
+							case "01":
+							case "wave1":
+							case "wave01":
+								queryCmds.push({ match: { set: "1" } })
+								break;
+							case "2":
+							case "02":
+							case "wave2":
+							case "wave02":
+								queryCmds.push({ match: { set: "2" } })
+								break;
 						}
 					}
 					
@@ -515,6 +642,105 @@ bot.on("message", async message => {
 						req.then((resp) => resp.json()).then((data) => { listOutput(message, data.hits.hits,cmdLists) })
 					}
 				}
+			} else if(cmd.substring(0,5).toLowerCase() === "rule_" || cmd.substring(0,6).toLowerCase() === "rules_"){
+				if ( cmd.substring(0,6).toLowerCase() === "rules_" ) { var rule = cmd.substring(6) }
+				else { var rule = cmd.substring(5) }
+				if ( /^[a-zA-Z ]+$/.test(rule) ) {
+					switch(rule.toLowerCase()) {
+						case 'clunky':
+							rule = "6.1.2.Clunky";
+							break;
+						case "deploy":
+							rule = "6.1.2.Deploy";
+							break;
+						case "discard":
+							rule = "6.1.2.Discard";
+							break;
+						case "disengaged":
+							rule = "6.1.2.Disengaged";
+							break;
+						case "dormant":
+							rule = "6.1.2.Dormant";
+							break;
+						case "draw":
+							rule = "6.1.2.Draw";
+							break;
+						case "engaged":
+							rule = "6.1.2.Engaged";
+							break;
+						case "exhaust":
+							rule = "6.1.2.Exhaust";
+							break;
+						case "last stand":
+							rule = "6.1.2.Last Stand";
+							break;
+						case "play":
+							rule = "6.1.2.Play";
+							break;
+						case "rend":
+							rule = "6.1.2.Rend";
+							break;
+						case "restart":
+							rule = "6.1.2.Restart";
+							break;
+						case "rotate":
+							rule = "6.1.2.Rotate";
+							break;
+						case "remove":
+							rule = "6.1.2.Remove";
+							break;
+						case "support":
+							rule = "6.1.2.Support";
+							break;
+						case "allied":
+							rule = "6.1.2.Allied";
+							break;
+						case "after playing a card":
+							rule = "6.1.2.After Playing a Card";
+							break;
+						case "control":
+							rule = "6.1.2.Control";
+							break;
+						case "enemy":
+							rule = "6.1.2.Enemy";
+							break;
+						case "move":
+							rule = "6.1.2.Move";
+							break;
+						case "leaving play":
+							rule = "6.1.2.Leaving Play";
+							break;
+						case "normal restrictions":
+							rule = "6.1.2.Normal Restrictions";
+							break;
+						case "replace":
+							rule = "6.1.2.Replace";
+							break;
+						case "since your last turn":
+							rule = "6.1.2.Since Your Last Turn";
+							break;
+						case "swap":
+							rule = "6.1.2.Swap";
+							break;
+						case "trait":
+							rule = "6.1.2.Trait";
+							break;
+						case "x":
+							rule = "6.1.2.X";
+							break;
+					}
+				}
+				//console.log(rule)
+				var ruleArray = rule.split('.')
+				var arrayLast = ruleArray[ruleArray.length-1]
+				
+				if( arrayLast.match(/[^\d]+|\d+/g).length > 1 ){
+					arrayLast = arrayLast.match(/[^\d]+|\d+/g)
+					ruleArray.pop()
+					for(i=0;i<arrayLast.length;i++){ ruleArray.push(arrayLast[i]) }
+				}
+
+				findRule(message,ruleArray,rule)
 			} else if (cmd.substring(0,1).toLowerCase() === "+"){
 				const query = {
 					size: 1, query: {match_phrase: {name: cmd.substring(1)}}
@@ -556,5 +782,10 @@ bot.on("message", async message => {
 		}
 	} else return;
 });
+
+bot.on("disconnect",function(){
+	console.log(`The Black Library has gone offline!`);
+	bot.login(tokenfile.token);
+})
 
 bot.login(tokenfile.token);

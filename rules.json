@@ -1,0 +1,479 @@
+{
+    "0": "Warhammer Age of Sigmar Champions Comprehensive Rules",
+    "1": {
+        "0":"OBJECTIVE OF THE GAME",
+        "1":{
+            "0":"Winning the Game",
+            "1":"Each players' goal is the removal of their opponent from the game whilst ensuring that they themselves remain in the game.",
+            "2":"This can be done either through the reduction of their opponent's health total to 0 or the opponent being removed from the game, through the Empty Deck Check rule (4.15.5)."
+        }
+    },
+    "2": {
+        "0":"GAME CONCEPTS",
+        "1":{
+            "0":"Equipment Needed",
+            "1":"Constructed Deck Format\n\nIn Constructed Deck format, players use a deck that they have built prior to the game",
+            "2":"A Constructed Deck for Champions contains 38 cards which is broken down as follows: \n4 Champion Cards (2.4.1)\n• These are kept separate from other cards.\n• A deck may include up to 2 copies of any given, non-Unique Champion.\n• A deck may include up to 1 copy of any given, Unique Champion.\n• The total cost of all 4 Champions must not exceed 20.\n4 Blessing Cards (2.4.2)\n• These are kept separate from other cards.\n• A deck may include only 1 copy of any given Blessing.\n30 Action Cards (2.4.3)\n• A deck may include up to 3 copies of any given Action card.",
+            "3":"All the cards in a Constructed Deck must be of the same Alliance or Unaligned (2.3.3).",
+            "4":"Each player in a Champions game requires their own deck"
+        },
+        "2":{
+            "0":"Golden Rules",
+            "1":"If the description of a card contradicts the rules, the card takes precedence.",
+            "2":"The effects of a card are not optional, unless a card says they are. You always do as much as you can when you play a card (not being able to do part, or all of a card's effects does not by itself stop the card from being played.) Example: Unless the card text features the word 'may' or 'up to' you must do as much of the effect as is possible.",
+            "3":"If a card says that something can't happen it takes priority over a card that says something can happen. Example: FEARLESS KHORGORATHS stops a Champion from Deploying Units. Even if they play a card that allows a Unit to be Deployed, they would not be able to Deploy on that Champion.",
+            "4":"Champions tournaments run according to the rules present in the Tournament Procedures document (Available in the future). Where that document contradicts the rules present here, that document takes precedence.",
+            "5":"This document can be used alongside the Warhammer Age of Sigmar:Champions: Quick Rules. Where this document contradicts the rules present in that document, this takes precedence."
+        },
+        "3":{
+            "0":"Alliances",
+            "1":"There are 4 Alliances in Champions. These are Chaos, Death, Destruction and Order.",
+            "2":"A card's Alliance can be identified by the colour and the frame of the card.",
+            "3":"A card can have no Alliance, in which case it is referred to as Unaligned."
+        },
+        "4":{
+            "0":"Card Types",
+            "1":{
+                "0":"Champion Cards\n\n These cards represent the group of powerful wizards and mighty warriors that the players command during a game of Champions.",
+                "1":{
+                    "0":"Parts of a Champion Card\nA Champion card contains the following information:\na. Name & Nameplate\nb. Quest\nc. Tags (If Applicable)\nd. Attributes\ne. Class\nf. Trait (If Applicable)\ng. Subject Image (If Applicable)",
+                    "a":"Each Champion has a Name in a box (referred to as the Nameplate) along the middle of the card. This Nameplate also serves as an indicator of Alliance (2.3.2).",
+                    "b":"Each Champion has a Quest that is made up of the 4 Quest Objectives in each of the corners of the card. (2.6).",
+                    "c":"Champions may have Tags (2.14) that run along the left side of thecard image.",
+                    "d":"Each Champions has 2 Attributes that run along the right side of the card image. These are Health Modifier (2.10.1) and Cost (2.1.1.1). Champions may also be Unique (2.1.1.1). Both Cost and Unique are typically only referenced during deck building.",
+                    "e":"Each Champion has a Class (2.4.1.2) shown in the bar beneath the Nameplate. Their Class is also shown by the colour highlight around the text box.",
+                    "f":"Champions may have a Trait (6.2) outlined in their text box. These can be either passive benefits or a Heroic Act the player can choose to use (2.9).",
+                    "g":"If a Champion's trait refers to a Highlight then they will have a Subject Image at the bottom of the text box. For more on Highlights and Subject Images see 2.8."
+                },
+                "2":{
+                    "0":"Champion Classes\nThere are three classes of Champion:\na. Warrior\nb. Wizard\nc. Warrior-Wizard",
+                    "a":"Warriors have a red line around their text box. They are allowed to play Unit cards (2.5.1) and Warrior Ability cards (2.5.3); both of which are also shown with a red line around their text box.",
+                    "b":"Wizards have a blue line around their text box. They are allowed to play Spell cards (2.5.2) and Wizard Ability cards (2.5.3); both of which are also shown with a blue line around their text box.",
+                    "c":"Warrior-Wizards have both a red and a blue line around their text box. They are allowed to play both Unit (2.5.1) & Spell (2.5.2) cards; and Warrior & Wizard Ability cards (2.5.3). They are also treated as being both Warrior and Wizard for the purposes of other card effects."
+                },
+                "3":{
+                    "0":"Champion Information",
+                    "a":"Champions are kept separate from the rest of the deck. Champions on the battlefield (3.1.3.4) are 'Free' information; and any 'UnPlaced' (3.2.2) Champions are considered 'Private Information'. For more on 'Free' and 'Private' information see 2.11."
+                }
+            },
+            "2":{
+                "0":"Blessing Cards\n\nBlessings represent the gifts bestowed onto Champions by their deities.",
+                "1":{
+                    "0":"Parts of a Blessing Card\n\nA Blessing card contains the following information:\na. Name & Nameplate\nb. Blessing Icon\nc. Corner Values (If Applicable)\nd. Duration\ne. Effect\nf. Subject Image (If Applicable)",
+                    "a":"Each Blessing has a Name in a box (referred to as the Nameplate) along the middle of the card. This Nameplate also serves as an indicator of Alliance (2.3.2).",
+                    "b":"Blessings have an Icon in yellow at the top of the card that marks them as being a Blessing.",
+                    "c":"Blessings may have Corner Values (2.4.2.2c) in some or all of the corners of the card.",
+                    "d":"Each Blessing has a Duration (2.4.2.2a) shown in the bar beneath the Nameplate. This will be either Passive (2.4.2.2c) or Instant (2.4.2.2b).",
+                    "e":"Each Blessing has an effect outlined in their text box.",
+                    "f":"If a Blessing's effect refers to a Highlight then they will have a Subject Image at the bottom of the text box. For more on Highlights and Subject Images see 2.8."
+                },
+                "2":{
+                    "0":"Passive & Instant Blessings",
+                    "a":"Blessings can either be Instant or Passive.",
+                    "b":"An Instant Blessing immediately resolves its effects upon being revealed then is turned face down in the Blessing row (3.1.3.4c), behind its respective Champion.",
+                    "c":"There are 3 ways Passive Blessings can be classed, based on how they rotate. Those are Permanent, Smooth, and Clunky.",
+                    "d":"A Passive Blessing is Permanent if it has no rotation symbol in its corners. Permanent Passive Blessings remain in play indefinitely.",
+                    "e":"A Blessing is Smooth if the rotation symbol in its current corner is circular.",
+                    "f":"Smooth Blessings Rotate automatically during the Battlefield Phase (4.1.2).",
+                    "g":"A Blessing is Clunky if the rotation symbol in its current corner is an irregular shape.",
+                    "h":"Clunky Blessing do not Rotate automatically; instead the card will specify when it is to Rotate.",
+                    "i":"Blessings' effects apply as soon as they are revealed, unless it's stated that the card is only in effect at a certain time or if its current corner has an X in it.",
+                    "j":"None of a Blessing's effects are active while the current corner has an X in it, or when the Blessing is about to Exhaust (6.1). Even if the rotation symbol is empty, the Blessing is still active.",
+                    "k":"A Blessing is turned face down when it Rotates to have no rotation symbol in the current corner, or if it Rotates around to its original orientation. This is referred to as the Blessing having Exhausted.",
+                    "l":"If an acting Blessing leaves its current corner or turns face down, any subsequent effects on that card are cancelled. It does not cancel an effect that is already in progress of being resolved. This means that if a Blessing has been Rotated more than 1 corner by another card's effect, any passed over corners still trigger and fully resolve their effects before Rotating to the next corner (they only stop resolving if Rotated mid-effect)."
+                },
+                "3": {
+                    "0":"Blessing Information",
+                    "a":"Blessings are kept separate from the rest of the deck. Blessings that are unrevealed are considered 'Hidden' information; and any revealed or resolved Blessings are considered 'Free' information. For more on 'Hidden' and 'Free' information see 2.11.",
+                    "b":"Once a Champion's Quest is completed (2.6.6), the corresponding Blessing is immediately revealed. If the Blessing is Passive it is then placed face up behind its Champion. If the Blessing is Instant, then its effect is resolved and then placed face down behind its Champion.",
+                    "c":"For more information on Blessings see 2.6."
+                }
+            },
+            "3":{
+                "0":"Action Cards\n\n Action cards represent Units of soldiers, mystical Spells, and powerful Abilities that can be used by Champions.",
+                "1":{
+                    "0":"Parts of an Action Card\n\nAn Action card contains the following information:\na. Name & Nameplate\nb. Action Icon\nc. Corner Values (If Applicable)\nd. Category\ne. Tags (If Applicable)\nf. Effect\ng. Subject Image (If Applicable)",
+                    "a":"Each Action card has a Name in a box (referred to as the Nameplate) along the middle of the card. This Nameplate also serves as an indicator of Alliance (2.3.2).",
+                    "b":"Action cards have an Icon at the top that marks their category. This is either a Unit, Spell, or Ability.",
+                    "c":"Unit & Spell cards have Corner Values (2.5.1.5 & 2.5.2.5) in some or all of the corners of the card. Ability cards never have Corner Values (2.5.3.3).",
+                    "d":"Action cards have a category shown on the line beneath the Nameplate. Unit and Spells will also have a coloured line around their text box to signify their category.",
+                    "e":"Action cards may have Tags (2.14) that run along the left side of the card image.",
+                    "f":"Each Action card has an effect outlined in their text box.",
+                    "g":"If an Action card's effect refers to a Highlight then they will have a Subject Image at the bottom of the text box. For more on Highlights and Subject Images see 2.14."
+                }
+            }
+        },
+        "5":{
+            "0":"Card Categories",
+            "1":{
+                "0":"Unit Cards",
+                "1":"A Unit card is any card with the Unit category in its Category line.",
+                "2":"Unit cards can only be played by Disengaged (See 2.14.4 for the exception) Warrior Champions (2.4.1.2a) Once played, they are Deployed by the Champion.",
+                "3":"Units remain in play in front of a Champion when played. They are always played in an upright position (the bottom of the card facing its owner).",
+                "4":"By default, Units' effects always affect their owner unless otherwise specified. Example: Because it doesn't specify 'owner' or 'opponent', nor does it have a subject image; FEASTING VARGHEIST gives its owner health and card draw with its effects.",
+                "5":"A Unit's current corner is the corner that is, relative to its current orientation, in the top left corner.",
+                "6":"Units' effects apply as soon as they come into play, unless it's stated that the card is only in effect at a certain time or if its current corner has an X in it.",
+                "7":"None of a Unit's effects are active while the current corner has an X in it, or when the Unit is about to Exhaust (6.1). Even if the rotation symbol is empty, the Unit is still active.",
+                "8":"There are 2 ways Units can be classed, based on how they rotate. Those are Smooth and Clunky.",
+                "9":"A Unit is Smooth if the rotation symbol in its current corner is circular.",
+                "10":"Smooth Units Rotate automatically during the Battlefield Phase (4.1.2).",
+                "11":"A Unit is Clunky if the rotation symbol in its current corner is an irregular shape.",
+                "12":": Clunky Units do not Rotate automatically; instead the card will specify when it is to Rotate.",
+                "13":"A Unit is placed on the discard pile when it Rotates to have no rotation symbol in the current corner, or if it Rotates around to its original orientation. This is referred to as the Unit having Exhausted.",
+                "14":": If an acting Unit leaves its current corner or leaves play, any subsequent effects on that card are cancelled. It does not cancel an effect that is already in progress of being resolved. This means that if a Unit has been Rotated more than 1 corner by another card's effect, any passed over corners still trigger and fully resolve their effects before Rotating to the next corner (they only stop resolving if Rotated mid-effect)."
+            },
+            "2":{
+                "0":"Spell Cards",
+                "1":"A Spell card is any card with the Spell category in its Category line.",
+                "2":": Spell cards can only be played by Wizard Champions (2.4.1.2b). Once played, they are Deployed by the Champion.",
+                "3":"Spells remain in play in front of a Champion when played. They are always played in an upright position (the bottom of the card facing its owner).",
+                "4":"By default, Spells' effects always affect their owner unless otherwise specified. Example: Because it doesn't specify 'owner' or 'opponent', nor does it have a subjectimage; INVIGORATING CHANT gives its owner health.",
+                "5":"A Spell's current corner is the corner that is, relative to its current orientation, in the top left corner.",
+                "6":"Spells' effects apply as soon as they come into play, unless it's stated that the card is only in effect at a certain time or if its current corner has an X in it.",
+                "7":"None of a Spell's effects are active while the current corner has an X in it, or when the Spell is about to Exhaust (6.1). Even if the rotation symbol is empty, the Spell is still active.",
+                "8":"There are 2 ways Spells can be classed, based on how they rotate. Those are Smooth and Clunky.",
+                "9":"A Spell is Smooth if the rotation symbol in its current corner is circular.",
+                "10":"Smooth Units Rotate automatically during the Battlefield Phase (4.1.2).",
+                "11":"A Spell is Clunky if the rotation symbol in its current corner is an irregular shape.",
+                "12":"Clunky Spells do not Rotate automatically; instead the card will specify when it is to Rotate.",
+                "13":"A Spell is placed on the discard pile when it Rotates to have no rotation symbol in the current corner, or if it Rotates around to its original orientation. This is referred to as the Spell having Exhausted.",
+                "14":"If an acting Spell leaves its current corner or leaves play, any subsequent effects on that card are cancelled. It does not cancel an effect that is already in progress of being resolved. This means that if a Unit has been Rotated more than 1 corner by another card's effect, any passed over corners still trigger and fully resolve their effects before Rotating to the next corner (they only stop resolving if Rotated mid-effect)."
+            },
+            "3":{
+                "0":"Ability Cards",
+                "1":"An Ability card is any card with the Ability category in its Category line.",
+                "2":"Ability cards have a permission as to which class of Champion can play them. This will either be Warrior, Wizard or Any. In the case of Warrior or Wizard, the card will also have the matching colour lining their text box.",
+                "3":"Ability cards can be played by Engaged Champions who control a Unit. They cannot be played by Engaged Champions who control a Spell.",
+                "4":"Ability cards are moved to the discard pile immediately after their effects have finished resolving.",
+                "5":"By default, Abilities' effects always affect their owner unless otherwise specified. Example: WAAAGH! INFUSION'S healing effect grants health to the owner of the card."
+            }
+        },
+        "6":{
+            "0":"Quests & Blessings",
+            "1":"Each Champion has 4 Quest Objectives; one in each corner of the card.",
+            "2":"A Champion's current Objective is the one in its current corner; which is the corner that is, relative to its current orientation, in the top left corner.",
+            "3":{
+                "0":"There are 6 different main types of Quest Objective:\na. Deploy Unit\nb. Deploy Spell\nc. Play Ability\nd. Deal Damage\ne. Gain Health\nf. Remove Unit or Spell",
+                "a":"The ‘Deploy Unit’ objective is completed when a Unit is Deployed onto the Champion. This Unit can be Deployed either via being Played or through another card effect (4.1.3.2).\nSome 'Deploy Unit' objectives also contain the image of a Tag (2.14), in whichcase the deployed Unit must have that Tag to complete the objective.",
+                "b":"The 'Deploy Spell' objective is completed when a Spell is Deployed onto the Champion. This Spell can be Deployed either via being Played or through another card effect (4.1.3.2).",
+                "c":"The 'Play Ability' objective is completed when an Ability is Played by the Champion (4.1.3.2).",
+                "d":"The 'Deal Damage' objective is completed when the Champion deals 1 or more damage to either player. This can be from either a card controlled by the Champion (Unit, Spell, or Ability) or through the Champion's trait or Heroic Act.",
+                "e":"The 'Gain Health' objective is completed when the Champion grants 1 or more health to either player. This can be from either a card controlled by the Champion (Unit, Spell, or Ability) or through the Champion's trait or Heroic Act.",
+                "f":"The 'Remove Unit or Spell' objective is completed when the Champion Removes a Unit or Spell controlled by either player. This can be from either a card controlled by the Champion (Unit, Spell, or Ability) or through the Champion's trait or Heroic Act."
+            },
+            "4":"A Champion can only complete 1 Objective per specific card, per turn. Example: BLOODREAVER CHIEFTAIN'S first Quest Objective is to 'Deploy Unit' and its second Quest Objective is to 'Deal Damage'. The BLOODREAVER CHIEFTAIN plays a PACK OF BLOODLETTERS which satisfies the 'Deploy Unit' objective. Then the PACK OF BLOODLETTERS, upon entering play, deals 1 damage, which cannot satisfy the 'Deal Damage' objective as the PACK OF BLOODLETTERS has already completed 1 objective this turn. If the BLOODREAVER CHIEFTAIN uses a different card that deals damage this turn, he would satisfy the 'Deal Damage' objective.",
+            "5":"When a Champion completes a Quest Objective they immediately Rotate forward one step. The 'Deploy Unit', 'Deploy Spell', 'Play Ability' objectives all complete the rotation before the card that is Deployed or Played resolves its Effects (whilst it is in limbo).",
+            "6":"Once all of a Champion's Quest Objectives are completed, their Quest is complete and their Blessing is revealed.",
+            "7":"The player then resolves any instant effects of the card and then, if the Blessing is an Instant, turn it face down on the Blessing row. After this is handled, play continues as normal."
+        },
+        "7":{
+            "0":"Order of Events",
+            "1":"The effects on a card are always resolved in the order in which they are written on the card. If something adds an effect to a card, it is added at the end of the card's existing effects. Example: FAVOUR OF THE GODS grants an additional Last Stand effect to GORE-SLICK SKULLREAPER . The order in which they will trigger if GORE-SLICK SKULLREAPER is removed, is first the Last Stand effect printed on GORE-SLICK SKULLREAPER will trigger and fully resolve, then the Last Stand effect granted by FAVOUR OF THE GODS will trigger and fully resolve, before the Unit is removed.",
+            "2":"A card's effects do not resolve immediately; before they do, any other effects that may trigger as a result of playing that card (or using its Heroic Act) are checked in Standard Order.",
+            "3":{
+                "0":"Standard Order",
+                "1":"Standard Order refers to the order in which cards in play apply their effects.",
+                "2":"Starting with the player that owns the card that is applying its effect, effects are checked in the following order:\na. Each active Blessing, from left to right.\nb. Each Champion, in order from left to right. The acting Champion's Quest Objective is checked before its Trait (2.4.1.1g), if applicable.\nc. Each Action card in play, in order from left to right.",
+                "3":"The above process (2.7.3.2) is then repeated for the opponent's cards.",
+                "4":"If another effect triggers as a response to another card, the above process is immediately interjected, starting with the player controlling the card that just triggered. After such an interjected response has been dealt with, the card that triggered it resumes checking for effects."
+            }
+        },
+        "8":{
+            "0":"Highlights & Subject Images",
+            "1":"Often cards will call out a 'Highlighted' subject for their effects. If this is the case then the card will also have a Subject Image to show what is 'Highlighted'",
+            "2":"When referring to a 'Highlighted' subject, a card may be referring to a Champion, Unit, Spell, or Blessing (or any combination of the above), which will be stated after the word 'Highlighted' in the card's effect. Where only the word allied or enemy is used (or variations thereof), it applies to the entire lane.",
+            "3":"The Subject Image is always applied as though the card were in an upright position (the bottom of the card facing its owner).",
+            "4":"The green squares in a Subject Image refer to allied positions; that is cards that you control. The red squares in a Subject Image refer to enemy positions; that is cards that your opponent controls.",
+            "5":"If the Subject Image contains a dark dot, that refers to the position of the card applying the effect, and all 'Highlighted' cards are checked relative to that position.\nIn this Subject Image, the highlighted position is the allied lane controlling the effect.\nIn this Subject Image, the highlighted positions are all allied lanes.\nIn this Subject Image, the highlighted position is the enemy lane opposite the effect, as well as both enemy lanes adjacent to it.\nIn this Subject Image, the highlighted positions are the enemy lane opposite the effect and the allied lanes adjacent to it."                    
+        },
+        "9":{
+            "0":"Heroic Acts",
+            "1":"Heroic Acts are effects on cards that require an action to be used.",
+            "2":"Any effects listed after a Heroic Act only trigger when the Heroic Act is activated, even if there is a line-break. The exception to this is if there are 2 Heroic Acts on the same card, in which case the first Heroic Act's effects end where the next Heroic Act begins.",
+            "3":"It is possible for a Heroic Act to satisfy the condition of a Quest Objective. Example: Whilst HUNGERING VAMPIRE LORD'S current Quest Objective is its third corner, 'Gain Health', if its Heroic Act is used and provides health, then the objective will be satisfied.",
+            "4":"Only 1 Heroic Act can be used each turn (from any source)."
+        },
+        "10":{
+            "0":"Moving Cards",
+            "1":{
+                "0":"Moving Cards to the Discard Pile",
+                "1":"When an Ability card is played, it normally moves to the discard pile (3.1.3.3) after its effect is resolved.",
+                "2":"If the card also moves other cards to the discard pile, the other cards are putonto the discard pile first (as the appropriate effect is dealt with), so the played card always ends up on top.",
+                "3":"If multiple Action cards are Removed (6.1) at once, they are placed on the discard pile in order from left to right.",
+                "4":"If a player causes another player to Discard (6.1) cards from their hand, the person discarding the cards gets to choose which order they are put onto the discard pile."
+            },
+            "2":{
+                "0":"Moving Cards from the Hand",
+                "1":"If a card effect instructs a player to move cards from their hand (3.1.3.2), the owner of the cards being moved gets to select the cards, within the boundaries of the effect.",
+                "2":"Cards that are being moved from the hand that have restrictions as to what is being moved are always shown to all players.",
+                "3":"If a card being moved from the hand to the deck (3.1.3.1) or vice versa, does not have a restriction on what it is, then it does not need to be shown.",
+                "4":"If a player cannot move all the required cards from their hand, they must move as many cards as they can. To prove that they cannot move any more cards, they must then show their hand to their opponent.",
+                "5":"If a player can move all the required cards from their hand, they do not need to show the remaining cards."
+            },
+            "3":{
+                "0":"Moving Specific Cards between Play Areas",
+                "1":"If a card effect instructs a player to move a specific kind of card (e.g. a 'Unit card') from one play area to another (or to another part of the same play area; e.g. to the top of the deck), the moved card must be revealed to all other players to prove that it matches the effects.",
+                "2":"If a card does not specify what card is being moved (e.g. move the 'top card of the deck') it does not need to be revealed to all other players."
+            },
+            "4":{
+                "0":"Moving Champions",
+                "1":"When a Champion swaps positions with another Champion, any cards that are controlled by those Champions also swap with them (Units, Spells & Blessings, both face down and face up).",
+                "2":"The current rotation of all those cards is also maintained."
+            }
+        },
+        "11":{
+            "0":"Information",
+            "1":{
+                "0":"Information covers the things that players are allowed to knowduring a game. There are three types of 'information' in Champions:\na. Free\nb. Private\nc. Hidden",
+                "a":"Free information is information that is known to both players; if asked a question about Free information, a player must answer honestly. Free Information includes:\n• Any cards that are face up on the battlefield.\n• Any cards that are in limbo.\n• Any cards that are in either player's discard pile.\n• The number of cards that are in a player's hand or deck.",
+                "b":"Private information is information that is known to one player, but not the other. A player is not obliged to reveal any Private information to their opponent. Private information includes:\n• Any cards that are in a player's hand.\n• The identity of cards in a deck.\n• Any Hidden information that a single player has learnt through a card effect.",
+                "c":"Hidden information is information that is not known to either player. Hidden information includes:\n• The order of cards in a deck.\n• Any face down Blessings."
+            }
+        },
+        "12":{
+            "0":"Increasing & Reducing Effects",
+            "1":"Cards that 'increase' or 'reduce' values do so additively.",
+            "2":"'Increase' and 'reduce' effects are dealt with in Standard Order (2.7.3)",
+            "3":"A value modified by 'increase' and 'reduce' effects can never be below 0.",
+            "4":"An effect is not applied until after all modifiers have been resolved. Example: An effect that says, \"when you're about to take damage\" or \"when you would take damage\", these are resolved after damage modifiers have been applied."
+        },
+        "13":{
+            "0":"Health",
+            "1":"Each player has a starting health total determined by using the Health Modifiers on Champions at the Start of the Game (3.2.2.7).",
+            "2":"The maximum health possible is 35 and the minimum health possible is 0.",
+            "3":"If an effect deals damage, adjust the health down accordingly. If an effect provides health, adjust the health up accordingly.",
+            "4":"If an effect provides health while the player is at 35 health, it does nothing. It does not count as gaining health.",
+            "5":"If an effect deals damage to a player who is at 0 health, or the damage in question is reduced to 0, it does nothing. It does not count as damage dealt."
+        },
+        "14":{
+            "0":"Tags",
+            "1":"Tags are used to describe a Champion or Unit, and are also referenced by other cards for effects.",
+            "2":"The full list of tags are: DAEMON, AELF, VAMPIRE, BEAST, MORDANT, STACKING, SPIRIT, VEHICLE, GROT, ORRUK, RISEN, STORMCAST",
+            "3":"Tags by themselves have no effect (other than Stacking: 2.14.4); but are referenced by other cards.",
+            "4":{
+                "0":"Stacking Units",
+                "a":"Stacking is a tag that can be applied to Unit cards.",
+                "b":"Stacking Units can be Deployed on top of any other Unit (even if the other Unit is not Stacking) whilst the controlling Champion is Engaged, up to a maximum stack of 3. New Units cannot be Deployed onto a Stack while there is a Unit already in the process of being Deployed onto it.",
+                "c":"If a Champion controls a Unit with less than 3 cards in its stack, they may Deploy another Stacking unit and place it over the existing Unit.",
+                "d":"When a Unit is Stacked on top of Unit it is Deployed, it is done so in an upright position, and all cards underneath it are returned to an upright position (the bottom of the card facing the owner).",
+                "e":"Only the top card of a Stack applies its effects; the cards underneath only contribute to the card's Support value. A Stack still only counts as a single Unit for the purpose of effects.",
+                "f":"If a Stacking Unit is Removed or Exhausted all the cards underneath it also leave play. The cards underneath the top card do not trigger any leaves play effects on themselves or other cards. The cards are placed in the discard pile such that the bottom card of the stack is the lowest in the discard.",
+                "g":"Whilst a Stack is Dormant nothing new can be Deployed onto it."
+            }
+        }
+    },
+    "3": {
+        "0":"START OF GAME",
+        "1":{
+            "0":"Play Area",
+            "1":{
+                "0":"Deck",
+                "a":"Each player's deck is kept face-down in a pile in front of them.",
+                "b":"Whenever a card is drawn, it is done from the top of the deck.",
+                "c":"If any card tells a player to look through their deck for another card or if they are told to put a card back into the deck, they must shuffle it afterwards. Exceptions to this is if a card specifies that it's optional, if the effect explicitly states to put the cards back in the same order, or if the effect states where to put the card(s) back.",
+                "d":"If the deck is empty, any effect to draw a card is ignored. It will not count asdrawing cards.",
+                "e":"No one is allowed to look through their own or anyone else's decks, unlessinstructed by a card. If a card instructs them to look through it, they aren't allowedto show the cards to anyone else."
+            },
+            "2":{
+                "0":"Hand",
+                "a":"These are the Action cards that a player may look at and play.",
+                "b":"Each player is allowed to look at their own hand only, at any time. Players may not show their hand to other players unless specifically required to for a card effect. Telling other players the cards in their hand is permitted so long as they do not show any cards. In this way the hand is 'Private' information.",
+                "c":"There is no upper limit to the number of cards a player may have in hand."
+            },
+            "3":{
+                "0":"Discard Pile",
+                "a":"All cards in the discard pile are placed face-up.",
+                "b":"Players are allowed to look through any discard pile at any time.",
+                "c":"Players are not allowed to rearrange the order of the cards in a discard pile. This applies even when cards are being moved out of the discard pile (only the cards being moved change)."
+            },
+            "4":{
+                "0":"Battlefield",
+                "a":"Each player's battlefield is divided into 3 rows of 4 columns each (these columns are sometimes referred to as lanes).",
+                "b":"Each column belongs to a Champion and they are placed in the middle row of their column. Their Blessing is stored under them, face down, until revealed.",
+                "c":"The back row is where a Blessing goes once it is revealed, while it is active, and after it is finished.",
+                "d":"The front row is where Action cards stay whilst they are in play, assigned to their respective Champions."
+            },
+            "5":{
+                "0":"Limbo",
+                "a":"This is the area where cards reside while they are being moved from one area to another. It is also where Ability cards go while they are being played. Cards that are in limbo are considered 'Free' information.",
+                "b":"If a card effect calls out an 'As Enters Play' or 'When Leaves Play' effect, it triggers while the card is in limbo (and not yet \"in play\"). Example: A player plays STARDRAKE, as it enters play, they Discard 1 card from their hand. This happens before the Stardrake enters the battlefield, so even if there is an effect that would make Stardrake Dormant once it enters the battlefield, the Discard effect still happens"
+            }
+        },
+        "2":{
+            "0":"Beginning of Game Procedure",
+            "1":{
+                "0":"Order of Play",
+                "1":"First both players use an agreed upon method to determine who will be the first player. Example: Rolling a dice, playing Rock/Paper/Scissors, flipping a coin...",
+                "2":"The player that is going first goes first in both the Champion Placement Phase and the game itself.",
+                "3":"Players should then shuffle their Blessings, present them to their opponent for randomisation, and then place one face down in each column on their battlefield from left to right, without looking at them.",
+                "4":"Players should then shuffle their deck of action cards, present them to the opponent to be shuffled, and then place them face down in front of them."
+            },
+            "2":{
+                "0":"Champion Placement Phase",
+                "1":"During this phase, each player's Champions will take turns entering the battlefield.",
+                "2":"The player that is going first places 1 Champion face up in 1 of their Champion slots (on top of the Blessing that was placed there).",
+                "3":"The player that is going second then places 2 Champions face up in 2 of their Champion slots (on top of the Blessings that were placed there).",
+                "4":"The first player then places 2 of their remaining Champions face up in 2 of their Champion slots (on top of the Blessings that were placed there).",
+                "5":"The second player then places their last 2 Champions face up in their remaining 2 Champion Slots (on top of the Blessings that were placed there)",
+                "6":"The first player then places their last Champion face up in the last Champion Slot (on top of the Blessing that was placed there).",
+                "7":"Once all the Champions have been placed, each player determines the starting health value. First, add all the health modifiers on the 4 Champions together, and then add the number to 30 (to a maximum of 35). This is the starting health value."
+            },
+            "3":{
+                "0":"Draw Opening Hands",
+                "1":"After Champions have been placed, and starting health has been determined, both players draw their opening hands.",
+                "2":"The player going first draws 4 cards from the deck. The player going second draws 5 cards from the deck."
+            }
+        }
+    },
+    "4": {
+        "0":"PLAYING THE GAME",
+        "1":{
+            "0":"Phases of the Turn\n\nEach turn consists of 5 phases. When all 5 phases have been acted out, the turn passes over to the opponent. This continues until the game is over. The 5 phases occur in the following order:\n4.1.1: Start of Turn Phase\n4.1.2: Battlefield Phase\n4.1.3: Action Phase\n4.1.4: Draw Phase\n4.1.5: End of Turn Phase",
+            "1":{
+                "0":"Start Phase",
+                "1":"Before any cards apply their effects, your actions per turn are reset; by default to 2.",
+                "2":"Apply the effect of any cards in play that are stated to take effect \"at the start of your turn\".",
+                "3":"These effects are resolved in Standard Order. See 2.7.3 for an explanation on Standard Order.",
+                "4":"Effects that trigger in this phase cannot trigger in any other phase of the turn. Example: The Ability card GAZE OF KHORNE triggers the effects of a highlighted Unit; this will not trigger the first effect of STARVING FLESH HOUNDS as it triggers only, \"at the start of your turn\""
+            },
+            "2":{
+                "0":"Battlefield Phase\n\nThis phase is divided into 4 discrete steps, in order to properly solve any potentially overlapping effects. These steps are as follows:\n4.1.2.1: Rotate Smooth Cards\n4.1.2.2: Update Passive Effects' Status\n4.1.2.3: Handle Exhausted Cards\n4.1.2.4: Trigger Instant Effects",
+                "1":{
+                    "0":"Rotate Smooth Cards",
+                    "a":"If a card in play is Smooth (has a circular rotation symbol in its current corner), Rotate it 1 step forwards (90 degrees anticlockwise).",
+                    "b":"This happens regardless of what number or icon is in the circular symbol.",
+                    "c":"If a card in play is Clunky (has an irregular rotation symbol in its current corner), it doesn't rotate automatically.",
+                    "d":"All cards that rotate during this step do so simultaneously."
+                },
+                "2":{
+                    "0":"Update Passive Effects' Status",
+                    "a":"If a card in play is Smooth (has a circular rotation symbol in its current corner), Rotate it 1 step forwards (90 degrees anticlockwise). Example: This includes effects such as \"increased damage done\", \"reduced damage received\", and effects that trigger when or if another effect happens.",
+                    "b":"If a card is inactive, its passive effects do not apply. See 2.5.1.7 & 2.5.2.7.",
+                    "c":"If a card wasn't active until it Rotated on this turn, its passive effects now come into action."
+                },
+                "3":{
+                    "0":"Handle Exhausted Cards",
+                    "a":"If any rotating cards in play no longer have a rotation symbol or have returned to their original upright position, they are moved to the discard pile (or turned face down in the case of Blessings) in order from left to right (they Exhaust).",
+                    "b":"If a card has any effects that trigger when that card Exhausts, they trigger while the card is in transition (the card is neither on the battlefield nor in the discard pile; it is in the Limbo Area: this even applies to Blessings that Exhaust).",
+                    "c":"Exhausted cards are handled in Standard Order from left to right. If multiple cards Exhaust on the same turn, each card is fully handled (e.g. moved to the discard pile) before the next card is handled (i.e. the previous card will be at the top of the discard pile when the next card is handled). Exhausted cards that are waiting to have their effects handled are in the Limbo Area, and thus not in play."
+                },
+                "4":{
+                    "0":"Trigger Instant Effects",
+                    "a":"Any active cards that have instant effects trigger now, in order from left to right.",
+                    "b":"Instant effects are any effects that are not passive effects and take place immediately. Example: This includes effects such as \"deal damage\", \"gain health\", and \"Remove\".",
+                    "c":"Instant effects only trigger if the card is active. See 2.5.1.7 & 2.5.2.7.",
+                    "d":"Any \"Start of Turn\" effects or Heroic Acts do not trigger in this step. See 2.9 for information on when Heroic Acts trigger."
+                }
+            },
+            "3":{
+                "0":"Action Phase\n\nDuring the Action Phase, players can take 2 actions by default. Players can only ever take actions during their own turn (actions cannot be gained at all during other players' turns).",
+                "1":{
+                    "0":"Actions",
+                    "a":"There are two different actions that a player can take during this phase. They are, to 'play a card' (4.1.3.2) (any number of times), or to 'activate a Heroic Act ' (4.1.3.3) (once per turn). They may also 'pass' on using an action or actions (4.1.3.4).",
+                    "b":"Actions are always attributed to a specific Champion for the purpose ofcompleting Quests."
+                },
+                "2":{
+                    "0":"Play a Card",
+                    "a":"To play a card, the player first shows the Action card that they wish to play and designate which Champion is playing it. To play the card, the Champion must have the right class (2.4.1.2).",
+                    "b":"Upon playing a card, the Champion checks if any Quest Objectives have been completed (2.6), if they are, the Champion rotates now.",
+                    "c":"The player then resolves any instant effects of the card and then, if the Action card is an Ability card, place it on top of the discard pile.",
+                    "d":"Cards of a specific name can only be played or have their Heroic Act used once per turn, even if the player has multiple copies of the card. Example: A player cannot play 2 GRYPH CHARGER in a single turn. A player also cannot play a GRYPH CHARGER then use the Heroic Act of a GRYPH CHARGER in the same turn or vice versa.",
+                    "e":"A card that is not played but is Deployed through other means does not consume this 'once per turn use'; so can still be played or use their Heroic Act. Example: A player uses COMMANDING THE DEAD to Deploy a GRIMGHAST REAPERS from their discard pile. Because it was not played, they may still play another GRIMGHAST REAPERS this turn."
+                },
+                "3":{
+                    "0":"Activate a Heroic Act",
+                    "a":"To activate a Heroic Act a player declares which card's Heroic Act they wish to use.",
+                    "b":"The player then resolves any instant effects of the card.",
+                    "c":"As in 2.9.4, only 1 Heroic Act may be used per turn. As in 4.1.3.2d, a card can only be used once per turn, whether that is to be played or use its Heroic Act."
+                },
+                "4":{
+                    "0":"Pass",
+                    "a":"Players are not required to take an action; they may instead choose to pass.",
+                    "b":"There is no limit to the number of actions that may be passed.",
+                    "c":"As soon as a player chooses to pass on using an action, they automatically pass on all their remaining actions for the turn.",
+                    "d":"Passing actions affects the number of cards that a player may draw during the Draw Phase. See 4.1.4 for more information on drawing cards."
+                }
+            },
+            "4":{
+                "0":"Draw Phase",
+                "1":"The player must now, for each action that was not used in the Action Phase, Draw a card from their deck.",
+                "2":"The cards drawn in this way should not be shown to other players."
+            },
+            "5":{
+                "0":"End of Turn Phase",
+                "1":"Now any effects that trigger at the 'end of the turn' take effect.",
+                "2":"These are resolved following the Standard Order (2.6.3).",
+                "3":"Finally, the 'Empty Deck Check' (4.1.5.5) is performed.",
+                "4":"The current player's turn then ends and the opponent begins their turn.",
+                "5":{
+                    "0":"Empty Deck Check",
+                    "a":"The 'Empty Deck Check' is a check that happens at the end of a player's turn in order to prevent stalemates.",
+                    "b":"It only takes place if the player whose turn it is has no cards left in their deck.",
+                    "c":"Follow the following steps to resolve the 'Empty Deck Check':\n• Did any card move from the acting player's Hand onto the battlefield or discard pile?\n\t• If yes, skip the remaining steps and continue the game.\n• If no, the player must do one of the following:\n\t• Move one of their Action cards in play to the discard pile (this doesn't count as a Remove effect).\n\t• Turn an active Blessing face down.\n\t• Move one of the cards from their Hand to the discard pile (this doesn't count as a Discard effect).\n• If the player could not do any of the above, they have been defeated."
+                }
+            }
+        }
+    },
+    "5": {
+        "0":"END OF GAME",
+        "1":{
+            "0":"Handling the Removal of a Player",
+            "1":"If a player's health is reduced to 0 or they fail the 'Empty Deck Check' (4.1.5.5), they are immediately removed from the game.",
+            "2":"This removal of a player may happen in the middle of an effect resolving.",
+            "3":"If there are additional effects to play out against the recipient (3.1.3) from the card that removed them from the game, those effects are ignored.",
+            "4":"The exception to the above is if a player is reduced to 0 health as a result of a card they played (even if it was just responsible for triggering an effect that then reduced them to 0 health). In this case, that player's card is fully played out, then they are removed.",
+            "5":"If both players are reduced to 0 health during the same action being played out; the player whose turn it is wins.",
+            "6":"A player on 0 health cannot receive healing."
+        },
+        "2":{
+            "0":"One-on-One End of Game",
+            "1":"A One-on-One game ends when 1 of the players is removed from the game.",
+            "2":"The winner is the remaining player."
+        },
+        "3":"Multiplayer End of Game\n\nThis section will be expanded in a future edition of these rules."
+    },
+    "6": {
+        "0":"KEYWORDS & GAME TERMS",
+        "1":{
+            "0":"Keywords",
+            "1":"Words on cards that are printed in white text on a black background are Keywords.",
+            "2":{
+                "0":"The following is a list of all the Keywords and their effects:\n• Clunky: Refers to an irregular shaped corner of a Blessing, Spell, or Unit (one that does not rotate automatically during the Battlefield phase).\n• Deploy: The act of getting a Unit into the Battlefield, through any means (including 'move'). All normal restrictions apply; if an effect attempts to Deploy a card that cannot be Deployed, the effect fails. The 'Deploy' is always considered to be done by the Champion receiving the card, even if another card instigated it. If multiple Units are Deployed at the same time, they are always moved into play one at a time (and fully resolve any effects as applicable before the next is moved).\n• Discard: Move a card from the source to the discard pile.\n• Disengaged: A Champion is 'Disengaged' if they are not controlling a Spell or Unit.\n• Dormant: The affected card does not apply its effects and cannot 'Rotate' or 'Restart', even from other card effects (this does not stop a card's “As Enters…” play effects from triggering in limbo).\n• Draw: The act of 'Drawing' a card from the deck. Unless otherwise specified, cards are drawn from the top. If a card is 'moved' from the deck, it is not considered to have been 'Drawn'.\n• Engaged: A Champion is 'Engaged' if they are controlling a Spell or Unit.\n• Exhaust: A Blessing, Spell, or Unit that has rotated past its last corner is 'Exhausted'. Any such Spell or Unit is discarded, and a Blessing is turned face down. Some effect cause cards to prematurely 'Exhaust', in which case they are immediately discarded (they ignore any remaining corners, if there are any). A card is not considered to have'Exhausted' if it is 'Removed'.\n• Last Stand: The effect following 'Last Stand' triggers if a Unit is about to be 'Removed'. Note that the 'Last Stand' effect is resolved before the 'Remove' happens, so it is still on the board at this time.\n• Play: The act of 'Playing' a card. If a card is moved into play as part of an effect, it is not considered to have been 'Played'.\n• Rend: Damage that is applied with 'Rend' bypasses any damage reducing effects.\n• Restart: Set an affected card to its first corner. This is not considered a 'Rotation', so any corners “passed over” do not trigger. If a 'Restarted' card was not on its first corner before 'Restarting', and the first corner has an effect on it, that effect triggers when the card 'Restarts'.\n• Rotate: Rotate an affected card 90 degrees in the described direction. If 'Rotated' from a card effect, corners passed over or landed on immediately trigger, if applicable (e.g. a Heroic Act wouldn't trigger as it requires an action to activate). Cards cannot 'Rotate' backwards past their first corner, but can be 'Rotated' forwards past their last corner (in which case they are 'Exhausted').\n• Remove: Remove a card of a specified type from play and discard it. If multiple cards are Removed, they trigger any 'Last Stand' effects in 'Standard Order' (see '5.1: Standard Order') and then go to Limbo simultaneously, before going to the Discard Pile in the left-to-right order they were in on the Battlefield.\n• Support: The number of cards under a stacking Unit. If a stacking Unit consists of 3 cards, its 'Support' is considered 2 (for the 2 cards underneath the top card)",
+                "Clunky": "Refers to an irregular shaped corner of a Blessing, Spell, or Unit (one that does not rotate automatically during the Battlefield phase).",
+                "Deploy": "The act of getting a Unit into the Battlefield, through any means (including 'move'). All normal restrictions apply; if an effect attempts to Deploy a card that cannot be Deployed, the effect fails. The 'Deploy' is always considered to be done by the Champion receiving the card, even if another card instigated it. If multiple Units are Deployed at the same time, they are always moved into play one at a time (and fully resolve any effects as applicable before the next is moved).",
+                "Discard": "Move a card from the source to the discard pile.",
+                "Disengaged": "A Champion is 'Disengaged' if they are not controlling a Spell or Unit.",
+                "Dormant": "The affected card does not apply its effects and cannot 'Rotate' or 'Restart', even from other card effects (this does not stop a card's “As Enters…” play effects from triggering in limbo).",
+                "Draw": "The act of 'Drawing' a card from the deck. Unless otherwise specified, cards are drawn from the top. If a card is 'moved' from the deck, it is not considered to have been 'Drawn'.",
+                "Engaged": "A Champion is 'Engaged' if they are controlling a Spell or Unit.",
+                "Exhaust": "A Blessing, Spell, or Unit that has rotated past its last corner is 'Exhausted'. Any such Spell or Unit is discarded, and a Blessing is turned face down. Some effect cause cards to prematurely 'Exhaust', in which case they are immediately discarded (they ignore any remaining corners, if there are any). A card is not considered to have'Exhausted' if it is 'Removed'.",
+                "Last Stand": "The effect following 'Last Stand' triggers if a Unit is about to be 'Removed'. Note that the 'Last Stand' effect is resolved before the 'Remove' happens, so it is still on the board at this time.",
+                "Play": "The act of 'Playing' a card. If a card is moved into play as part of an effect, it is not considered to have been 'Played'.",
+                "Rend": "Damage that is applied with 'Rend' bypasses any damage reducing effects.",
+                "Restart": "Set an affected card to its first corner. This is not considered a 'Rotation', so any corners “passed over” do not trigger. If a 'Restarted' card was not on its first corner before 'Restarting', and the first corner has an effect on it, that effect triggers when the card 'Restarts'.",
+                "Rotate": "Rotate an affected card 90 degrees in the described direction. If 'Rotated' from a card effect, corners passed over or landed on immediately trigger, if applicable (e.g. a Heroic Act wouldn't trigger as it requires an action to activate). Cards cannot 'Rotate' backwards past their first corner, but can be 'Rotated' forwards past their last corner (in which case they are 'Exhausted').",
+                "Remove": "Remove a card of a specified type from play and discard it. If multiple cards are Removed, they trigger any 'Last Stand' effects in 'Standard Order' (see '5.1: Standard Order') and then go to Limbo simultaneously, before going to the Discard Pile in the left-to-right order they were in on the Battlefield.",
+                "Support": "The number of cards under a stacking Unit. If a stacking Unit consists of 3 cards, its 'Support' is considered 2 (for the 2 cards underneath the top card)"
+
+            }
+        },
+        "2":{
+            "0":"Commonly Used Terms\nAction Card: Any card that is not a Blessing or Champion.\n• Allied: Any card or effect that you own.\n• After Playing a Card: Effects that trigger after Playing a card are dealt with after the played card has been resolved.\n• Control: A Champion controls any allied card in its lane (Unit, Spell or Blessing) and any Ability that has been played by it.\n• Enemy: Any card or effect that your Opponent owns.\n• Move: A card that is moved from one play area to another. Any such cards are not considered to have been Played, Discarded, Removed, or Returned. If a player moves a card into play. If an effect doesn't specify where the card should be moved from, it moves from the hand.\n• Leaving Play: When a card is referred to as 'leaving play', it means that it has been Removed, Returned, Exhausted, or simply moved out of the active play area (e.g. to the hand, deck, or discard pile). When a card leaves play it moves through limbo on its way to another area, if it has an effect on 'leaves play' it will trigger while it is there.\n• Normal Restrictions: This refers to a Champion only being able to have it's appropriate cards (Units for Warriors, Spells for Wizards) and being Disengaged.\n• Replace: When a card in play is Replaced, it is placed on the discard pile (It does not count as being Removed or Exhausted).\n• Since Your Last Turn: Refers to the a window of time since the end of the player's previous turn (or the start of the game, if they haven't yet had a turn).\n• Swap: Replaces a card in play with a card from another area (e.g. the hand or discard pile). If no valid card exists in either of the involved areas, this effect fails and does not take effect. The location of the cards also swap (for example, a Unit swapped into play takes the place of the Unit that was swapped out), even in the Discard Pile.\n• Trait: The effect of a Champion; this can either be a Heroic Act or a passive effect.\n• X: Whilst a card has an X as its current corner, it does not apply any of its effects (This does not include any \"As Enters…\" play effects that trigger in limbo). X is not considered to be a value (I.e. it is not 0).",
+            "Allied": "Any card or effect that you own.",
+            "After Playing a Card": "Effects that trigger after Playing a card are dealt with after the played card has been resolved.",
+            "Control": "A Champion controls any allied card in its lane (Unit, Spell or Blessing) and any Ability that has been played by it.",
+            "Enemy": "Any card or effect that your Opponent owns.",
+            "Move": "A card that is moved from one play area to another. Any such cards are not considered to have been Played, Discarded, Removed, or Returned. If a player moves a card into play. If an effect doesn't specify where the card should be moved from, it moves from the hand.",
+            "Leaving Play": "When a card is referred to as 'leaving play', it means that it has been Removed, Returned, Exhausted, or simply moved out of the active play area (e.g. to the hand, deck, or discard pile). When a card leaves play it moves through limbo on its way to another area, if it has an effect on 'leaves play' it will trigger while it is there.",
+            "Normal Restrictions": "This refers to a Champion only being able to have it's appropriate cards (Units for Warriors, Spells for Wizards) and being Disengaged.",
+            "Replace": "When a card in play is Replaced, it is placed on the discard pile (It does not count as being Removed or Exhausted).",
+            "Since Your Last Turn": "Refers to the a window of time since the end of the player's previous turn (or the start of the game, if they haven't yet had a turn).",
+            "Swap": "Replaces a card in play with a card from another area (e.g. the hand or discard pile). If no valid card exists in either of the involved areas, this effect fails and does not take effect. The location of the cards also swap (for example, a Unit swapped into play takes the place of the Unit that was swapped out), even in the Discard Pile.",
+            "Trait": "The effect of a Champion; this can either be a Heroic Act or a passive effect.",
+            "X": "Whilst a card has an X as its current corner, it does not apply any of its effects (This does not include any \"As Enters…\" play effects that trigger in limbo). X is not considered to be a value (I.e. it is not 0)."
+        }
+    },
+    "7": {
+        "0":"CHANGELOG\n\n24TH August 2018\n\t2.2.2: ​Additional Clarification Added.\n\t2.14.4f: Additional Clarification on moving Stacks to the discard pile.\n\t2.5.1.2: Ref Change (Previously Incorrect).\n\t2.5.1.2: Additional Clarification for Units being Deployed\n\t2.5.2.2: Additional Clarification for Spells being Deployed\n\t2.7.2: Rephrase to better explain when effects trigger.\n\t4.1.3: Added Clarification for Actions gained on other player's turns.\n\t6.1: Deploy: Additional Clarification on multiple units Deployed simultaneously\n\t6.2: Added: Allied, 'Control', Enemy.\n\t7: Added Changelog.\n\n20TH August 2018\n\tS2.4.2.2l: Additional clarification on effects with rotating.\n\tS2.5.1.2: Added Disengaged.\n\tS2.5.1.14: Additional clarification on effects with rotating.\n\tS2.5.2.14: Additional clarification on effects with rotating.\n\tS2.5.3.3: Added Abilities over Units & Spells Clarification.\n\tS2.5.3.4: Ref. Change (Formerly 2.5.3.3).\n\tS2.5.3.5: Ref. Change (Formerly 2.5.3.4).\n\tS2.8.2: Typo Corrected.\n\tS3.2.1.3: Adding clarification on randomisation & Blessing placement.\n\tS2.14.4b: Additional Clarification on Engaged.\n\tS4.1.3.1a: References in Text Corrected.\n\tS4.1.3.2e: Additional Clarification on Play vs Deploy.\n\tS4.1.3.4a: Ref Corrected.\n\tS4.1.3.4b: Ref Corrected.\n\tS4.1.3.4c: Ref Corrected.\n\tS4.1.3.4d: Ref Corrected.\n\tS6.1: Wording Correction on Deploy.\n\tS6.1: Additional Clarification on Dormant.\n\tS6.2: Added: 'Normal Restrictions', 'Replace', 'X'."
+    }
+}
