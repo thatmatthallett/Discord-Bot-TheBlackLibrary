@@ -15,7 +15,8 @@ function nameOutput(message, card){
 	var botembed = new Discord.RichEmbed()
 	var	title = card.alliance + " - " + card.category.en
 	var desc = card.effect.en
-	var regex = /X /g
+	var regex1 = /X /g
+	var regex2 = /X\./g
 
 	//check Alliance to set color
 	switch(card.alliance){
@@ -69,7 +70,7 @@ function nameOutput(message, card){
 	if (typeof card.class != "undefined"){ title += ", " + card.class.en }
 	botembed.setTitle(title)
 	// Set the main content of the embed
-	.setDescription(desc.replace(regex,'↺ '))
+	.setDescription(desc.replace(regex1,'↺ ').replace(regex2,'↺.'))
 
 	//Set Corners if not Champion
 	if (card.category.en != "Champion" && card.corners.length > 0){
@@ -450,7 +451,7 @@ bot.on("message", async message => {
 				message.author.send("__**List of Possible Commands**__\n\n__Single Cards__\n\n[[searchPhrase]] : this command will search the API for the phrase you entered and send out a formatted embed based on the first matched card, if no match is found and invalid command message will be sent.\n[[+searchPhrase]] : this is the same as above except it returns the card image instead of formatted text, also returns invalid command message on no match.\n\n__List of Cards__\n\nA command starts off with list_ and then can have up to 4 (so far) tags put in after it.\nHere is an example command [[list_order_unit_common]], this will yeid a private message to you with the list cards that match your chosen tags.\nCurrent tags allowed are for Alliance, Category (card type), Rarity, and Tags(ie storcast, risen, orruck). For a list of accepted tags use [[list_tags]].\n\n__Rule Command__ ***new***\n\nThe rules command is here to save you time on copying and pasting rules, as long as you know the rules code the bot can post it for you! An example command would be [[rule_2.7.3.2]] (\"rules\" is also accepted). You can also get the rules for keywords and game terms by simply putting the term after \"rule\", for example to see the rule for the Dormant Keyword you would put [[rule_dormant]].")
 			} else if(cmd.substring(0,5).toLowerCase() === "list_"){
 				if (cmd === "list_tags") {
-					message.author.send("__**List Commands Tags**__\n\nexclusive(exclusives)\nrare(rares)\nuncommon(uncommons)\ncommon(commons)\norder\nchaos\ndeath\ndestruction\nany(unaligned)\nchampion(champions)\nblessing(blessings)\nunit(units)\nspell(spells)\nability(abilities)\nstormcast\norruk\nbeast\ndaemon\nunique\ngrot\nrisen\nstacking\naelf\nvampire\nmordant\nspirit\nvehicle\nogor\nset # (ie 1, 01, 2, or 02, putting \"wave\" infront of the # is also accepted)\nall")
+					message.author.send("__**List Commands Tags**__\n\nexclusive(exclusives)\nrare(rares)\nuncommon(uncommons)\ncommon(commons)\norder\nchaos\ndeath\ndestruction\nany(unaligned)\nchampion(champions)\nblessing(blessings)\nunit(units)\nspell(spells)\nability(abilities)\nstormcast\norruk\nbeast\ndaemon\nunique\ngrot\nrisen\nstacking\naelf\nvampire\nmordant\nspirit\nvehicle\nogor\naqshy\nghyran\nset # (ie 1, 01, 2, or 02, putting \"wave\" infront of the # is also accepted)\nall")
 				} else {
 					//Detect if a cmd is asking for a list
 					var queryCmds = []
@@ -497,6 +498,8 @@ bot.on("message", async message => {
 							case "spirit":
 							case "vehicle":
 							case "ogor":
+							case "aqshy":
+							case "ghyran":
 							case "1":
 							case "01":
 							case "2":
@@ -608,17 +611,23 @@ bot.on("message", async message => {
 							case "ogor":
 								queryCmds.push({ match: { tags: "Ogor" } })
 								break;
+							case "aqshy":
+								queryCmds.push({ match: { tags: "Aqshy" } })
+								break;
+							case "ghyran":
+								queryCmds.push({ match: { tags: "Ghyran" } })
+								break;
 							case "1":
 							case "01":
 							case "wave1":
 							case "wave01":
-								queryCmds.push({ match: { set: "1" } })
+								queryCmds.push({ "nested": { "path": "category", "query": { "bool": { "filter": [ { "set": {"number": "1"} } ] } } } })
 								break;
 							case "2":
 							case "02":
 							case "wave2":
 							case "wave02":
-								queryCmds.push({ match: { set: "2" } })
+								queryCmds.push({ "nested": { "path": "category", "query": { "bool": { "filter": [ { "set": {"number": "2"} } ] } } } })
 								break;
 						}
 					}
@@ -785,7 +794,9 @@ bot.on("message", async message => {
 
 bot.on("disconnect",function(){
 	console.log(`The Black Library has gone offline!`);
-	bot.login(tokenfile.token);
+	bot.login(tokenfile.token).catch(console.error);;
 })
+bot.on("error", (e) => console.error(e) );
+bot.on("warn", (e) => console.warn(e) );
 
-bot.login(tokenfile.token);
+bot.login(tokenfile.token).catch(console.error);;
