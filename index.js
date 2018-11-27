@@ -2,11 +2,12 @@ const fetch = require('node-fetch'); // install from here https://www.npmjs.com/
 const tokenfile = require("./token.json");
 const rules = require("./rules.json");
 const Discord = require("discord.js");
+const deckSharing = require("@playfusion/warhammer-deck-sharing");
 require('events').EventEmitter.defaultMaxListeners = 300;
 const bot = new Discord.Client({disableEveryone: true})
 
 function rfc3986EncodeURIComponent (str) {
-    return encodeURIComponent(str).replace(/[!'()*]/g, escape).replace("%2C",",");
+    return encodeURIComponent(str).replace(/[!'()*]/g, escape);
 }
 
 //Card Name Output function
@@ -15,8 +16,7 @@ function nameOutput(message, card){
 	var botembed = new Discord.RichEmbed()
 	var	title = card.alliance + " - " + card.category.en
 	var desc = card.effect.en
-	var regex1 = /X /g
-	var regex2 = /X\./g
+	var regex = /X /g
 
 	//check Alliance to set color
 	switch(card.alliance){
@@ -39,19 +39,19 @@ function nameOutput(message, card){
 	var encodedName = rfc3986EncodeURIComponent(card.name)
 	switch(card.category.en){
 		case 'Blessing':
-			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_blessing.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName)
+			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_blessing.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName+'/')
 			break;
 		case 'Unit':
-			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_unit.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName)
+			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_unit.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName+'/')
 			break;
 		case 'Spell':
-			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_spell.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName)
+			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_spell.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName+'/')
 			break;
 		case 'Ability':
-			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_ability.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName)
+			botembed.setAuthor(card.name,'https://assets.warhammerchampions.com/card-database/icons/category_ability.png?1','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName+'/')
 			break;
 		default:
-			botembed.setAuthor(card.name,'','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName)
+			botembed.setAuthor(card.name,'','https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+encodedName+'/')
 			.addField('Health Modifier', card.healthMod,true)
 			.addField('Cost', card.cost,true)
 			var questCorners = ""
@@ -70,7 +70,7 @@ function nameOutput(message, card){
 	if (typeof card.class != "undefined"){ title += ", " + card.class.en }
 	botembed.setTitle(title)
 	// Set the main content of the embed
-	.setDescription(desc.replace(regex1,'↺ ').replace(regex2,'↺.'))
+	.setDescription(desc.replace(regex,'↺ '))
 
 	//Set Corners if not Champion
 	if (card.category.en != "Champion" && card.corners.length > 0){
@@ -218,23 +218,24 @@ function factionListEmbed(message, cardList, cmd, wave){
 	var units = ""
 	var spells = ""
 	var abilities = ""
+	
 	for(i=0;i<cardList.length;i++){
 		var encodedName = rfc3986EncodeURIComponent(cardList[i].name)
 		switch ( cardList[i].category.en ){
 			case 'Champion':
-				champions += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +')\n'
+				champions += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +'/)\n'
 				break;
 			case 'Blessing':
-				blessings += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +')\n'
+				blessings += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +'/)\n'
 				break;
 			case 'Unit':
-				units += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +')\n'
+				units += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +'/)\n'
 				break;
 			case 'Spell':
-				spells += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +')\n'
+				spells += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +'/)\n'
 				break;
 			case 'Ability':
-				abilities += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +')\n'
+				abilities += '['+ cardList[i].name +'](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/'+ encodedName +'/)\n'
 				break;
 		}
 	}
@@ -297,15 +298,15 @@ function listOutput(message, cards, cmd){
 				neutralCards.push(cards[i]._source)
 		}
 	}
-
 	if ( orderCards.length > 0 ) {
 		//message.channel.send('We have '+ orderCards.length +' order cards');
 		var orderSetCards = []
 		for(i=0;i<orderCards.length;i++){
-			if ( orderSetCards[orderCards[i].set-1] == undefined ){
+			const pos = orderCards[i].set[0].number-1;
+			if ( orderSetCards[pos] == undefined ){
 				orderSetCards.push([orderCards[i]])
 			} else {
-				orderSetCards[orderCards[i].set-1].push(orderCards[i])
+				orderSetCards[pos].push(orderCards[i])
 			}
 		}
 		if ( orderSetCards.legnth > 1 ) {
@@ -321,10 +322,11 @@ function listOutput(message, cards, cmd){
 		//message.channel.send('We have '+ chaosCards.length +' chaos cards');
 		var chaosSetCards = []
 		for(i=0;i<chaosCards.length;i++){
-			if ( chaosSetCards[chaosCards[i].set-1] == undefined ){
+			const pos = chaosCards[i].set[0].number-1;
+			if ( chaosSetCards[pos] == undefined ){
 				chaosSetCards.push([chaosCards[i]])
 			} else {
-				chaosSetCards[chaosCards[i].set-1].push(chaosCards[i])
+				chaosSetCards[pos].push(chaosCards[i])
 			}
 		}
 		if ( chaosSetCards.legnth > 1 ) {
@@ -340,10 +342,11 @@ function listOutput(message, cards, cmd){
 		//message.channel.send('We have '+ deathCards.length +' death cards');
 		var deathSetCards = []
 		for(i=0;i<deathCards.length;i++){
-			if ( deathSetCards[deathCards[i].set-1] == undefined ){
+			const pos = deathCards[i].set[0].number-1;
+			if ( deathSetCards[pos] == undefined ){
 				deathSetCards.push([deathCards[i]])
 			} else {
-				deathSetCards[deathCards[i].set-1].push(deathCards[i])
+				deathSetCards[pos].push(deathCards[i])
 			}
 		}
 		if ( deathSetCards.legnth > 1 ) {
@@ -359,10 +362,11 @@ function listOutput(message, cards, cmd){
 		//message.channel.send('We have '+ destroCards.length +' destro cards');
 		var destroSetCards = []
 		for(i=0;i<destroCards.length;i++){
-			if ( destroSetCards[destroCards[i].set-1] == undefined ){
+			const pos = destroCards[i].set[0].number-1;
+			if ( destroSetCards[pos] == undefined ){
 				destroSetCards.push([destroCards[i]])
 			} else {
-				destroSetCards[destroCards[i].set-1].push(destroCards[i])
+				destroSetCards[pos].push(destroCards[i])
 			}
 		}
 		if ( destroSetCards.legnth > 1 ) {
@@ -378,10 +382,11 @@ function listOutput(message, cards, cmd){
 		//message.channel.send('We have '+ neutralCards.length +' neutral cards');
 		var neutralSetCards = []
 		for(i=0;i<neutralCards.length;i++){
-			if ( neutralSetCards[neutralCards[i].set-1] == undefined ){
+			const pos = neutralCards[i].set[0].number-1;
+			if ( neutralSetCards[pos] == undefined ){
 				neutralSetCards.push([neutralCards[i]])
 			} else {
-				neutralSetCards[neutralCards[i].set-1].push(neutralCards[i])
+				neutralSetCards[pos].push(neutralCards[i])
 			}
 		}
 		if ( neutralSetCards.legnth > 1 ) {
@@ -394,7 +399,85 @@ function listOutput(message, cards, cmd){
 		}
 	}
 }
+//deck output
+function embedDeck(message, cards, deckCode){
+	var embedDeck = new Discord.RichEmbed();
+	var champions = "";
+	var blessings = "";
+	var units = "";
+	var spells = "";
+	var abilities = "";
+	var builderLink = "http://whaosc.com/deckbuilder/?deckcode="+deckCode+"&alliance=";
+	//sort deck by category
+	for(i=0;i<cards.length;i++){
+		const encodedName = rfc3986EncodeURIComponent(cards[i].name);
+		switch(cards[i].category){
+			case 'Champion':
+				champions += cards[i].count + "x [" + cards[i].name + "](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/" + encodedName + "/)\n";
+				break;
+			case 'Blessing':
+				blessings += cards[i].count + "x [" + cards[i].name + "](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/" + encodedName + "/)\n";
+				break;
+			case 'Unit':
+				units += cards[i].count + "x [" + cards[i].name + "](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/" + encodedName + "/)\n";
+				break;
+			case 'Spell':
+				spells += cards[i].count + "x [" + cards[i].name + "](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/" + encodedName + "/)\n";
+				break;
+			case 'Ability':
+				abilities += cards[i].count + "x [" + cards[i].name + "](https://www.warhammerchampions.com/decks-and-packs/card-database/en/card/" + encodedName + "/)\n";
+				break;
+		}
+	}
 
+	//color deckEmbed based on alliance and set author
+	switch(cards[0].alliance){
+		case 'Order':
+			embedDeck.setAuthor('Order Deck');
+			embedDeck.setColor(9929826);
+			builderLink += "Order";
+			break;
+		case 'Chaos':
+			embedDeck.setAuthor('Chaos Deck');
+			embedDeck.setColor(8210493);
+			builderLink += "Chaos";
+			break;
+		case 'Death':
+			embedDeck.setAuthor('Death Deck');
+			embedDeck.setColor(5723747);
+			builderLink += "Death";
+			break;
+		case 'Destruction':
+			embedDeck.setAuthor('Destruction Deck');
+			embedDeck.setColor(5923385);
+			builderLink += "Destruction";
+			break;
+	}
+	embedDeck.setDescription('[Open deck in app.](http://whaosc-deckcode.herokuapp.com/applink/'+deckCode+') / [Open in browser.](https://www.warhammerchampions.com/decks-and-packs/card-database/en/shared-deck/'+deckCode+')\n[Edit deck on whaosc.com deck builder.]('+builderLink+')');
+	if (champions.length > 0){ 
+		//console.log(champions.length);
+		embedDeck.addField('Champions',champions);
+	}
+	if (blessings.length > 0){ 
+		//console.log(blessings.length);
+		embedDeck.addField('Blessings',blessings);
+	}
+	if (units.length > 0){ 
+		//console.log(units.length);
+		embedDeck.addField('Units',units);
+	}
+	if (spells.length > 0){ 
+		//console.log(spells.length);
+		embedDeck.addField('Spells',spells);
+	}
+	if (abilities.length > 0){ 
+		//console.log(abilities.length);
+		embedDeck.addField('Abilities',abilities);
+	}
+
+	message.channel.send(embedDeck);
+}
+//rule output
 function findRule(message, findArray, cmd, rule){
 	var activeRule
 	if (rule == 'undefined' || rule == null){ activeRule = rules[findArray[0]] }
@@ -428,9 +511,60 @@ bot.on("message", async message => {
 	//if (message.channel.type === "dm" ) return;
 
 	//create array of commands for parsing
-	var cmdRegex = /\[\[(.*?)\]\]/g;
+	const cmdRegex = /\[\[(.*?)\]\]/g;
 	var cmdArray = message.content.match(cmdRegex);
+	var deckLink = message.content.match(/(https?:\/\/[^\s]+)/g);
 
+	if(deckLink != null){
+		for(i=0;i < deckLink.length;i++){
+			if(deckLink[i].indexOf('shared-deck/') > -1){
+				console.log('Deck Link Found');
+				const codeStart = deckLink[i].indexOf('shared-deck/')+12;// # = length of matched string
+				const codeEnd = deckLink[i].indexOf('/',codeStart);
+				var deckCode;
+				if (codeEnd > 0) { deckCode = deckLink[i].substring(codeStart,codeEnd); }
+				else { deckCode = deckLink[i].substring(codeStart); }
+				
+				var deck = deckSharing.parse(deckCode);
+				deck.cards.sort(function(a, b){
+					var vA = a.id, vB = b.id;
+					// Compare the 2 dates
+					if(vA < vB) return -1;
+					if(vA > vB) return 1;
+					return 0;
+				});
+				var cards = { bool: { should: [] } };
+				
+				for(i=0;i<deck.cards.length;i++){
+					cards.bool.should.push({ match: { id: deck.cards[i].id } })
+				}
+				
+				const query = { size: 38, query: cards, sort: { id: "asc" }, _source: { include: ["id", "name", "rarity", "alliance", "category"] } };
+				const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify(query)
+				});
+				
+				// Display the result
+				req.then((resp) => resp.json()).then((data) => {
+					const cards = data.hits.hits;
+					for(i=0;i<cards.length;i++){
+						const card = cards[i]._source;
+						var pairs = {
+							name: card.name,
+							alliance: card.alliance,
+							rarity: card.rarity,
+							category: card.category.en
+						};
+						deck.cards[i] = {...deck.cards[i], ...pairs};
+					}
+					
+					embedDeck(message, deck.cards, deckCode);
+				});
+			}	
+		}
+	} 
 	if(cmdArray != null){
 		//duplicate command detections
 		if (cmdArray.length > 1){
@@ -442,7 +576,7 @@ bot.on("message", async message => {
 		
 		//loop through commands found and execute Message Functions
 		for(i=0;i < cmdArray.length;i++){
-			var cmd = cmdArray[i].substring(2,cmdArray[i].length-2)
+			var cmd = cmdArray[i].substring(2,cmdArray[i].length-2).replace(/[\u2018\u2019]/g, "'");
 			//this is for you Arti!!
 			if (cmd === 'doot' || cmd === "dootboy" || cmd === "dootboi") { cmd = "knight-heraldor"}
 			if (cmd === '+doot' || cmd === "+dootboy" || cmd === "+dootboi") { cmd = "+knight-heraldor"} 
@@ -451,7 +585,7 @@ bot.on("message", async message => {
 				message.author.send("__**List of Possible Commands**__\n\n__Single Cards__\n\n[[searchPhrase]] : this command will search the API for the phrase you entered and send out a formatted embed based on the first matched card, if no match is found and invalid command message will be sent.\n[[+searchPhrase]] : this is the same as above except it returns the card image instead of formatted text, also returns invalid command message on no match.\n\n__List of Cards__\n\nA command starts off with list_ and then can have up to 4 (so far) tags put in after it.\nHere is an example command [[list_order_unit_common]], this will yeid a private message to you with the list cards that match your chosen tags.\nCurrent tags allowed are for Alliance, Category (card type), Rarity, and Tags(ie storcast, risen, orruck). For a list of accepted tags use [[list_tags]].\n\n__Rule Command__ ***new***\n\nThe rules command is here to save you time on copying and pasting rules, as long as you know the rules code the bot can post it for you! An example command would be [[rule_2.7.3.2]] (\"rules\" is also accepted). You can also get the rules for keywords and game terms by simply putting the term after \"rule\", for example to see the rule for the Dormant Keyword you would put [[rule_dormant]].")
 			} else if(cmd.substring(0,5).toLowerCase() === "list_"){
 				if (cmd === "list_tags") {
-					message.author.send("__**List Commands Tags**__\n\nexclusive(exclusives)\nrare(rares)\nuncommon(uncommons)\ncommon(commons)\norder\nchaos\ndeath\ndestruction\nany(unaligned)\nchampion(champions)\nblessing(blessings)\nunit(units)\nspell(spells)\nability(abilities)\nstormcast\norruk\nbeast\ndaemon\nunique\ngrot\nrisen\nstacking\naelf\nvampire\nmordant\nspirit\nvehicle\nogor\naqshy\nghyran\nset # (ie 1, 01, 2, or 02, putting \"wave\" infront of the # is also accepted)\nall")
+					message.author.send("__**List Commands Tags**__\n\nexclusive(exclusives)\nrare(rares)\nuncommon(uncommons)\ncommon(commons)\norder\nchaos\ndeath\ndestruction\nany(unaligned)\nchampion(champions)\nblessing(blessings)\nunit(units)\nspell(spells)\nability(abilities)\nstormcast\norruk\nbeast\ndaemon\nunique\ngrot\nrisen\nstacking\naelf\nvampire\nmordant\nspirit\nvehicle\nogor\nset # (ie 1, 01, 2, or 02, putting \"wave\" infront of the # is also accepted)\nall")
 				} else {
 					//Detect if a cmd is asking for a list
 					var queryCmds = []
@@ -498,8 +632,6 @@ bot.on("message", async message => {
 							case "spirit":
 							case "vehicle":
 							case "ogor":
-							case "aqshy":
-							case "ghyran":
 							case "1":
 							case "01":
 							case "2":
@@ -611,23 +743,17 @@ bot.on("message", async message => {
 							case "ogor":
 								queryCmds.push({ match: { tags: "Ogor" } })
 								break;
-							case "aqshy":
-								queryCmds.push({ match: { tags: "Aqshy" } })
-								break;
-							case "ghyran":
-								queryCmds.push({ match: { tags: "Ghyran" } })
-								break;
 							case "1":
 							case "01":
 							case "wave1":
 							case "wave01":
-								queryCmds.push({ "nested": { "path": "category", "query": { "bool": { "filter": [ { "set": {"number": "1"} } ] } } } })
+								queryCmds.push({ "nested": { "path": "set", "query": { "bool": { "filter": [ { "term": {"set.number": "1"} } ] } } } })
 								break;
 							case "2":
 							case "02":
 							case "wave2":
 							case "wave02":
-								queryCmds.push({ "nested": { "path": "category", "query": { "bool": { "filter": [ { "set": {"number": "2"} } ] } } } })
+								queryCmds.push({ "nested": { "path": "set", "query": { "bool": { "filter": [ { "term": {"set.number": "2"} } ] } } } })
 								break;
 						}
 					}
@@ -639,7 +765,7 @@ bot.on("message", async message => {
 							size: 406, //Query size should be a number >= total number of printed cards
 							//can add in set filter at a later date 
 							query: { bool: { must: queryCmds } },
-							_source: { include: ["name","alliance","category","rarity","set","wave"] },
+							_source: { include: ["name","alliance","category","rarity","set"] },
 							sort: [ {"name.keyword": "asc"} ]
 						};
 						const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
@@ -751,8 +877,15 @@ bot.on("message", async message => {
 
 				findRule(message,ruleArray,rule)
 			} else if (cmd.substring(0,1).toLowerCase() === "+"){
+				var imgSearch;
+				var exclusive = false;
+				if (cmd.substring(0,2) == "++") {
+					imgSearch = {match: { "name.normalized": { "query": cmd.substring(2), "fuzziness": "AUTO" } }};
+					exclusive = true;
+				} else { imgSearch = {match: { "name.normalized": { "query": cmd.substring(1), "fuzziness": "AUTO" } }}; }
+
 				const query = {
-					size: 1, query: {match_phrase: {name: cmd.substring(1)}}
+					size: 1, query: imgSearch
 				}
 				const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
 					method: "POST",
@@ -764,9 +897,15 @@ bot.on("message", async message => {
 				req.then((resp) => resp.json()).then((data) => {
 					if (data.hits.total === 0){ message.channel.send("Invalid Card Name"); }
 					else {
-						const card = data.hits.hits[0]._source
+						const card = data.hits.hits[0]._source;
 						// Note: the sku array is guaranteed to have at least 1 default sku for each language
-						const defaultSku = card.skus.filter((sku) => sku.default && sku.lang === "en")[0]
+						var defaultSku;
+						if (exclusive) {
+							defaultSku = card.skus.filter((sku) => sku.rarity === "Exclusive" && sku.finish === "matte")[0];
+							if (defaultSku == undefined){
+								defaultSku = card.skus.filter((sku) => sku.default && sku.lang === "en")[0];
+							}
+						} else { defaultSku = card.skus.filter((sku) => sku.default && sku.lang === "en")[0]; }
 						const src = "https://assets.warhammerchampions.com/card-database/cards/" + defaultSku.id + ".jpg"
 
 						message.channel.send({ embed:{ "image":{ "url": src } } });
@@ -775,7 +914,8 @@ bot.on("message", async message => {
 			} else {
 				//console.log('name search '+i+' fired');
 				const query = {
-					size: 1, query: {match_phrase: {name: cmd}}
+					size: 1,
+					query: { match: { "name.normalized": { "query": cmd, "fuzziness": "AUTO" } } }
 				};
 				const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
 					method: "POST",
@@ -795,8 +935,8 @@ bot.on("message", async message => {
 bot.on("disconnect",function(){
 	console.log(`The Black Library has gone offline!`);
 	bot.login(tokenfile.token).catch(console.error);;
-})
+});
 bot.on("error", (e) => console.error(e) );
 bot.on("warn", (e) => console.warn(e) );
 
-bot.login(tokenfile.token).catch(console.error);;
+bot.login(tokenfile.token).catch(console.error);
