@@ -12,10 +12,20 @@
         "0":"GAME CONCEPTS",
         "1":{
             "0":"Equipment Needed",
-            "1":"Constructed Deck Format\n\nIn Constructed Deck format, players use a deck that they have built prior to the game",
-            "2":"A Constructed Deck for Champions contains 38 cards which is broken down as follows: \n4 Champion Cards (2.4.1)\n• These are kept separate from other cards.\n• A deck may include up to 2 copies of any given, non-Unique Champion.\n• A deck may include up to 1 copy of any given, Unique Champion.\n• The total cost of all 4 Champions must not exceed 20.\n4 Blessing Cards (2.4.2)\n• These are kept separate from other cards.\n• A deck may include only 1 copy of any given Blessing.\n30 Action Cards (2.4.3)\n• A deck may include up to 3 copies of any given Action card.",
-            "3":"All the cards in a Constructed Deck must be of the same Alliance or Unaligned (2.3.3).",
-            "4":"Each player in a Champions game requires their own deck"
+            "1":{
+                "0":"Constructed Deck Format\n\nIn Constructed Deck format, players use a deck that they have built prior to the game",
+                "1":"A Constructed Deck for Champions contains 38 cards which is broken down as follows:\n4 Champion Cards (2.4.1)\n • These are kept separate from other cards.\n • A deck may include up to 2 copies of any given, non-Unique Champion.\n • A deck may include up to 1 copy of any given, Unique Champion.\n • The total cost of all 4 Champions must not exceed 20.\n4 Blessing Cards (2.4.2)\n • These are kept separate from other cards.\n • A deck may include only 1 copy of any given Blessing.\n30 Action Cards (2.4.3)\n • A deck may include up to 3 copies of any given Action card.",
+                "2":"All the cards in a Constructed Deck must be of the same Alliance or Unaligned (2.3.3).",
+                "3":"All the Realm tags in a Constructed Deck (if any) must be of the same Realm (see 2.14.5 for further information on Realm tags).",
+                "4":"Each player in a Champions game requires their own deck."
+            },
+            "2":"Limited Deck Format\n In Limited Deck format, players are given boosters which they then use to assemble a deck from. This section will be expanded in a future edition of these rules.",
+            "3":{
+                "0":"Health Tracking",
+                "1":"Regardless of the Deck Format, all players must have a way to track their health.",
+                "2":"Each player is responsible for tracking their own health total.",
+                "3":"The minimum possible health is 0, and the maximum possible health is 35. (2.13)"
+            }
         },
         "2":{
             "0":"Golden Rules",
@@ -247,8 +257,8 @@
         "14":{
             "0":"Tags",
             "1":"Tags are used to describe a Champion or Unit, and are also referenced by other cards for effects.",
-            "2":"The full list of tags are: DAEMON, AELF, VAMPIRE, BEAST, MORDANT, STACKING, SPIRIT, VEHICLE, GROT, ORRUK, RISEN, STORMCAST",
-            "3":"Tags by themselves have no effect (other than Stacking: 2.14.4); but are referenced by other cards.",
+            "2":"The full list of tags are: DAEMON, AELF, VAMPIRE, BEAST, MORDANT, STACKING, SPIRIT, VEHICLE, GROT, ORRUK, RISEN, STORMCAST, OGOR, AQSHY, GHYRAN",
+            "3":"Tags by themselves have no effect (other than Stacking: 2.14.4); but are referenced by other cards or game rules.",
             "4":{
                 "0":"Stacking Units",
                 "a":"Stacking is a tag that can be applied to Unit cards.",
@@ -258,6 +268,12 @@
                 "e":"Only the top card of a Stack applies its effects; the cards underneath only contribute to the card's Support value. A Stack still only counts as a single Unit for the purpose of effects.",
                 "f":"If a Stacking Unit is Removed or Exhausted all the cards underneath it also leave play. The cards underneath the top card do not trigger any leaves play effects on themselves or other cards. The cards are placed in the discard pile such that the bottom card of the stack is the lowest in the discard.",
                 "g":"Whilst a Stack is Dormant nothing new can be Deployed onto it."
+            },
+            "5":{
+                "0":"Realm Tags",
+                "a":"Realm tags are tags that exist only on Spell & Blessing Cards.",
+                "b":"There are currently 2 different Realm tags: AQSHY & GHYRAN. These can be distinguished both by their symbol, and their colours.",
+                "c":"A deck can only contain 1 different type of Realm tag. Example: A deck can contain any number of different cards with the Realm tag: GHYRAN, but then cannot contain any cards with a different Realm tag."
             }
         }
     },
@@ -437,7 +453,7 @@
             "0":"Keywords",
             "1":"Words on cards that are printed in white text on a black background are Keywords.",
             "2":{
-                "0":"The following is a list of all the Keywords and their effects:\n• Clunky: Refers to an irregular shaped corner of a Blessing, Spell, or Unit (one that does not rotate automatically during the Battlefield phase).\n• Deploy: The act of getting a Unit into the Battlefield, through any means (including 'move'). All normal restrictions apply; if an effect attempts to Deploy a card that cannot be Deployed, the effect fails. The 'Deploy' is always considered to be done by the Champion receiving the card, even if another card instigated it. If multiple Units are Deployed at the same time, they are always moved into play one at a time (and fully resolve any effects as applicable before the next is moved). If a card requires you to Deploy a card from a hidden information area (the Deck or Hand), you can always choose to not Deploy it.\n• Discard: Move a card from the source to the discard pile.\n• Disengaged: A Champion is 'Disengaged' if they are not controlling a Spell or Unit.\n• Dormant: The affected card does not apply its effects and cannot 'Rotate' or 'Restart', even from other card effects (this does not stop a card's “As Enters…” play effects from triggering in limbo).\n• Draw: The act of 'Drawing' a card from the deck. Unless otherwise specified, cards are drawn from the top. If a card is 'moved' from the deck, it is not considered to have been 'Drawn'.\n• Engaged: A Champion is 'Engaged' if they are controlling a Spell or Unit.\n• Exhaust: A Blessing, Spell, or Unit that has rotated past its last corner is 'Exhausted'. Any such Spell or Unit is discarded, and a Blessing is turned face down. Some effect cause cards to prematurely 'Exhaust', in which case they are immediately discarded (they ignore any remaining corners, if there are any). A card is not considered to have'Exhausted' if it is 'Removed'.\n• Last Stand: The effect following 'Last Stand' triggers if a Unit is about to be 'Removed'. Note that the 'Last Stand' effect is resolved before the 'Remove' happens, so it is still on the board at this time.\n• Play: The act of 'Playing' a card. If a card is moved into play as part of an effect, it is not considered to have been 'Played'.\n• Rend: Damage that is applied with 'Rend' bypasses any damage reducing effects.\n• Restart: Set an affected card to its first corner. This is not considered a 'Rotation', so any corners “passed over” do not trigger. If a 'Restarted' card was not on its first corner before 'Restarting', and the first corner has an effect on it, that effect triggers when the card 'Restarts'.\n• Rotate: Rotate an affected card 90 degrees in the described direction. If 'Rotated' from a card effect, corners passed over or landed on immediately trigger, if applicable (e.g. a Heroic Act wouldn't trigger as it requires an action to activate). Cards cannot 'Rotate' backwards past their first corner, but can be 'Rotated' forwards past their last corner (in which case they are 'Exhausted').\n• Remove: Remove a card of a specified type from play and discard it. If multiple cards are Removed, they trigger any 'Last Stand' effects in 'Standard Order' (see '5.1: Standard Order') and then go to Limbo simultaneously, before going to the Discard Pile in the left-to-right order they were in on the Battlefield.\n• Support: The number of cards under a stacking Unit. If a stacking Unit consists of 3 cards, its 'Support' is considered 2 (for the 2 cards underneath the top card)",
+                "0":"The following is a list of all the Keywords and their effects: Clunky, Deploy, Discard, Draw, Engaged, Exhaust, Last Stand, Rend, Rotate, Remove, Support.\n\nPlease use the rule command to get a keyword's specific text, for example [[rule_deploy]].",
                 "Clunky": "Refers to an irregular shaped corner of a Blessing, Spell, or Unit (one that does not rotate automatically during the Battlefield phase).",
                 "Deploy": "The act of getting a Unit into the Battlefield, through any means (including 'move'). All normal restrictions apply; if an effect attempts to Deploy a card that cannot be Deployed, the effect fails. The 'Deploy' is always considered to be done by the Champion receiving the card, even if another card instigated it. If multiple Units are Deployed at the same time, they are always moved into play one at a time (and fully resolve any effects as applicable before the next is moved). If a card requires you to Deploy a card from a hidden information area (the Deck or Hand), you can always choose to not Deploy it.",
                 "Discard": "Move a card from the source to the discard pile.",
@@ -457,7 +473,7 @@
             }
         },
         "2":{
-            "0":"Commonly Used Terms\nAction Card: Any card that is not a Blessing or Champion.\n• Allied: Any card or effect that you own.\n• After Playing a Card: Effects that trigger after Playing a card are dealt with after the played card has been resolved.\n• Control: A Champion controls any allied card in its lane (Unit, Spell or Blessing) and any Ability that has been played by it.\n• Enemy: Any card or effect that your Opponent owns.\n• Move: A card that is moved from one play area to another. Any such cards are not considered to have been Played, Discarded, Removed, or Returned. If a player moves a card into play. If an effect doesn't specify where the card should be moved from, it moves from the hand.\n• Leaving Play: When a card is referred to as 'leaving play', it means that it has been Removed, Returned, Exhausted, or simply moved out of the active play area (e.g. to the hand, deck, or discard pile). When a card leaves play it moves through limbo on its way to another area, if it has an effect on 'leaves play' it will trigger while it is there.\n• Normal Restrictions: This refers to a Champion only being able to have it's appropriate cards (Units for Warriors, Spells for Wizards) and being Disengaged.\n• Replace: When a card in play is Replaced, it is placed on the discard pile (It does not count as being Removed or Exhausted).\n• Since Your Last Turn: Refers to the a window of time since the end of the player's previous turn (or the start of the game, if they haven't yet had a turn).\n• Swap: Replaces a card in play with a card from another area (e.g. the hand or discard pile). If no valid card exists in either of the involved areas, this effect fails and does not take effect. The location of the cards also swap (for example, a Unit swapped into play takes the place of the Unit that was swapped out), even in the Discard Pile.\n• Trait: The effect of a Champion; this can either be a Heroic Act or a passive effect.\n• X: Whilst a card has an X as its current corner, it does not apply any of its effects (This does not include any \"As Enters…\" play effects that trigger in limbo). X is not considered to be a value (I.e. it is not 0).",
+            "0":"Commonly Used Terms: Action Card, Allied, After Playing a Card, Control, Enemy, Move, Leaving Play, Normal Restrictions, Since Your Last Turn, Swap, Trait, Turn, X.\n\nPlease use the rule command to get a term's specific text, for example [[rule_action card]].",
             "Allied": "Any card or effect that you own.",
             "After Playing a Card": "Effects that trigger after Playing a card are dealt with after the played card has been resolved.",
             "Control": "A Champion controls any allied card in its lane (Unit, Spell or Blessing) and any Ability that has been played by it.",
@@ -468,6 +484,7 @@
             "Replace": "When a card in play is Replaced, it is placed on the discard pile (It does not count as being Removed or Exhausted).",
             "Since Your Last Turn": "Refers to the a window of time since the end of the player's previous turn (or the start of the game, if they haven't yet had a turn).",
             "Swap": "Replaces a card in play with a card from another area (e.g. the hand or discard pile). If no valid card exists in either of the involved areas, this effect fails and does not take effect. The location of the cards also swap (for example, a Unit swapped into play takes the place of the Unit that was swapped out), even in the Discard Pile.",
+            "Turn": "A turn consists of the 5 phases outlined in 4.1. A turn ends and changes to another player’s turn once all 5 phases have been completed.",
             "Trait": "The effect of a Champion; this can either be a Heroic Act or a passive effect.",
             "X": "Whilst a card has an X as its current corner, it does not apply any of its effects (This does not include any \"As Enters…\" play effects that trigger in limbo). X is not considered to be a value (I.e. it is not 0)."
         }
