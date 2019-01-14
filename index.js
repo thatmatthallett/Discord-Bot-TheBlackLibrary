@@ -1,10 +1,12 @@
+const fs = require('fs');
 const fetch = require('node-fetch'); // install from here https://www.npmjs.com/package/node-fetch
 const tokenfile = require("./token.json");
 const rules = require("./rules.json");
 const Discord = require("discord.js");
+const https = require('https');
 const deckSharing = require("@playfusion/warhammer-deck-sharing");
 require('events').EventEmitter.defaultMaxListeners = 300;
-const bot = new Discord.Client({disableEveryone: true})
+const bot = new Discord.Client({disableEveryone: true});
 
 function rfc3986EncodeURIComponent (str) {
     return encodeURIComponent(str).replace(/[!'()*]/g, escape);
@@ -462,18 +464,21 @@ function embedDeck(message, cards, deckCode){
 		//console.log(blessings.length);
 		embedDeck.addField('Blessings',blessings);
 	}
-	if (units.length > 0){ 
-		//console.log(units.length);
-		embedDeck.addField('Units',units);
-	}
-	if (spells.length > 0){ 
-		//console.log(spells.length);
-		embedDeck.addField('Spells',spells);
-	}
-	if (abilities.length > 0){ 
-		//console.log(abilities.length);
-		embedDeck.addField('Abilities',abilities);
-	}
+	if (units.length >= 1023) {
+		var unitArray = [units.substring(0,units.indexOf('\n',900)),units.substring(units.indexOf('\n',900)+1)]
+		var unitEmbedArray = charCountLoop(unitArray);
+		for(i=0;i<unitEmbedArray.length;i++){ embedDeck.addField('Units '+(i+1),unitEmbedArray[i]); }
+	} else { if (units.length > 0){ embedDeck.addField('Units',units); } }
+	if (spells.length >= 1023) {
+		var spellArray = [spells.substring(0,spells.indexOf('\n',900)),spells.substring(spells.indexOf('\n',900)+1)]
+		var spellEmbedArray = charCountLoop(spellArray);
+		for(i=0;i<spellEmbedArray.length;i++){ embedDeck.addField('Group'+(i+1),spellEmbedArray[i]); }
+	} else { if (spells.length > 0){ embedDeck.addField('Spells',spells); } }
+	if (abilities.length >= 1023) {
+		var abilArray = [abilities.substring(0,abilities.indexOf('\n',900)),abilities.substring(abilities.indexOf('\n',900)+1)]
+		var abilEmbedArray = charCountLoop(abilArray);
+		for(i=0;i<abilEmbedArray.length;i++){ embedDeck.addField('Group'+(i+1),abilEmbedArray[i]); }
+	} else { if (abilities.length > 0){ embedDeck.addField('Abilities',abilities); } }
 
 	message.channel.send(embedDeck);
 }
@@ -493,7 +498,7 @@ function findRule(message, findArray, cmd, rule){
 			if (typeof activeRule == "object") {
 				message.channel.send("**Rule "+ cmd +":**  "+activeRule[0])
 			} else {
-				console.log(activeRule.length)
+				//console.log(activeRule.length)
 				message.channel.send("**Rule "+ cmd +":**  "+activeRule)
 			}
 		}
@@ -517,52 +522,169 @@ bot.on("message", async message => {
 
 	if(deckLink != null){
 		for(i=0;i < deckLink.length;i++){
-			if(deckLink[i].indexOf('shared-deck/') > -1){
-				console.log('Deck Link Found');
-				const codeStart = deckLink[i].indexOf('shared-deck/')+12;// # = length of matched string
-				const codeEnd = deckLink[i].indexOf('/',codeStart);
-				var deckCode;
-				if (codeEnd > 0) { deckCode = deckLink[i].substring(codeStart,codeEnd); }
-				else { deckCode = deckLink[i].substring(codeStart); }
-				
-				var deck = deckSharing.parse(deckCode);
-				deck.cards.sort(function(a, b){
-					var vA = a.id, vB = b.id;
-					// Compare the 2 dates
-					if(vA < vB) return -1;
-					if(vA > vB) return 1;
-					return 0;
-				});
-				var cards = { bool: { should: [] } };
-				
-				for(i=0;i<deck.cards.length;i++){
-					cards.bool.should.push({ match: { id: deck.cards[i].id } })
-				}
-				
-				const query = { size: 38, query: cards, sort: { id: "asc" }, _source: { include: ["id", "name", "rarity", "alliance", "category"] } };
-				const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
-					method: "POST",
-					headers: {"Content-Type": "application/json"},
-					body: JSON.stringify(query)
-				});
-				
-				// Display the result
-				req.then((resp) => resp.json()).then((data) => {
-					const cards = data.hits.hits;
-					for(i=0;i<cards.length;i++){
-						const card = cards[i]._source;
-						var pairs = {
-							name: card.name,
-							alliance: card.alliance,
-							rarity: card.rarity,
-							category: card.category.en
-						};
-						deck.cards[i] = {...deck.cards[i], ...pairs};
-					}
+			//playfusion deck links
+			if(deckLink[i].indexOf('warhammerchampions.com') > -1) {
+				if(deckLink[i].indexOf('shared-deck') > -1){
+					console.log('Deck Link Found');
+					const codeStart = deckLink[i].indexOf('shared-deck/')+12;// # = length of matched string
+					const codeEnd = deckLink[i].indexOf('/',codeStart);
+					var deckCode;
+					if (codeEnd > 0) { deckCode = deckLink[i].substring(codeStart,codeEnd); }
+					else { deckCode = deckLink[i].substring(codeStart); }
 					
-					embedDeck(message, deck.cards, deckCode);
-				});
-			}	
+					var deck = deckSharing.parse(deckCode);
+					deck.cards.sort(function(a, b){
+						var vA = a.id, vB = b.id;
+						// Compare the 2 dates
+						if(vA < vB) return -1;
+						if(vA > vB) return 1;
+						return 0;
+					});
+					var cards = { bool: { should: [] } };
+					
+					for(i=0;i<deck.cards.length;i++){
+						cards.bool.should.push({ match: { id: deck.cards[i].id } })
+					}
+
+					//Log File Update
+					const date = new Date();
+					const log = "\n" + date.toLocaleString() + " - " + message.author.tag + ": " + deckCode;
+					fs.appendFile('deckCalls.txt',log,function(err,data){
+						if (err) console.log(err);
+					});
+					
+					const query = { size: 38, query: cards, sort: { id: "asc" }, _source: { include: ["id", "name", "rarity", "alliance", "category"] } };
+					const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
+						method: "POST",
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify(query)
+					});
+					
+					// Display the result
+					req.then((resp) => resp.json()).then((data) => {
+						const cards = data.hits.hits;
+						for(i=0;i<cards.length;i++){
+							const card = cards[i]._source;
+							var pairs = {
+								name: card.name,
+								alliance: card.alliance,
+								rarity: card.rarity,
+								category: card.category.en
+							};
+							deck.cards[i] = {...deck.cards[i], ...pairs};
+						}
+						
+						embedDeck(message, deck.cards, deckCode);
+					});
+				}
+			}
+			//whaosc deck links
+			if(deckLink[i].indexOf('whaosc.com') > -1){
+				if(deckLink[i].indexOf('deckid') > -1){
+					console.log('Found whaosc.com deckid');
+					const start = deckLink[i].indexOf('deckid=')+7;
+					const deckid = deckLink[i].substring(start);
+					var url = "https://whaosc.com/wp-admin/admin-ajax.php?action=whaosc_get_deckcodes&deckid="+deckid;
+					//deckid based check
+					https.get(url, (resp) => {
+						let data = '';
+						// A chunk of data has been recieved.
+						resp.on('data', (chunk) => { data += chunk; });
+						// The whole response has been received. Print out the result.
+						resp.on('end', () => {
+							const deckInfo = JSON.parse(data);
+							
+							if (deckInfo.data.pitched != "0") {
+								message.channel.send("Pitched lists are not supported at this time.")
+							} else {
+								var deck = deckSharing.parse(deckInfo.data.deckcode);
+								deck.cards.sort(function(a, b){
+									var vA = a.id, vB = b.id;
+									// Compare the 2 dates
+									if(vA < vB) return -1;
+									if(vA > vB) return 1;
+									return 0;
+								});
+								var cards = { bool: { should: [] } };
+					
+								for(i=0;i<deck.cards.length;i++){
+									cards.bool.should.push({ match: { id: deck.cards[i].id } })
+								}
+
+								const query = { size: 38, query: cards, sort: { id: "asc" }, _source: { include: ["id", "name", "rarity", "alliance", "category"] } };
+								const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
+									method: "POST",
+									headers: {"Content-Type": "application/json"},
+									body: JSON.stringify(query)
+								});
+								
+								// Display the result
+								req.then((resp) => resp.json()).then((data) => {
+									const cards = data.hits.hits;
+									for(i=0;i<cards.length;i++){
+										const card = cards[i]._source;
+										var pairs = {
+											name: card.name,
+											alliance: card.alliance,
+											rarity: card.rarity,
+											category: card.category.en
+										};
+										deck.cards[i] = {...deck.cards[i], ...pairs};
+									}
+									
+									embedDeck(message, deck.cards, deckInfo.data.deckcode);
+								});
+							}
+						});
+					}).on("error", (err) => { console.log("Error: " + err.message); });
+				} 
+				if(deckLink[i].indexOf('deckcode') > -1){
+					const pitched = deckLink[i].indexOf('pitched=') + 8;
+					if (deckLink[i].substring(pitched,pitched+1) != "0" ) { return message.channel.send("Pitched lists are not supported at this time.") }
+					console.log('Found whaosc.com deck code');
+					const start = deckLink[i].indexOf('deckcode=') + 9;
+					const end = deckLink[i].indexOf('&',start);
+					const deckCode = deckLink[i].substring(start,end);
+
+					var deck = deckSharing.parse(deckCode);
+					deck.cards.sort(function(a, b){
+						var vA = a.id, vB = b.id;
+						// Compare the 2 dates
+						if(vA < vB) return -1;
+						if(vA > vB) return 1;
+						return 0;
+					});
+					var cards = { bool: { should: [] } };
+		
+					for(i=0;i<deck.cards.length;i++){
+						cards.bool.should.push({ match: { id: deck.cards[i].id } })
+					}
+
+					const query = { size: 38, query: cards, sort: { id: "asc" }, _source: { include: ["id", "name", "rarity", "alliance", "category"] } };
+					const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
+						method: "POST",
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify(query)
+					});
+					
+					// Display the result
+					req.then((resp) => resp.json()).then((data) => {
+						const cards = data.hits.hits;
+						for(i=0;i<cards.length;i++){
+							const card = cards[i]._source;
+							var pairs = {
+								name: card.name,
+								alliance: card.alliance,
+								rarity: card.rarity,
+								category: card.category.en
+							};
+							deck.cards[i] = {...deck.cards[i], ...pairs};
+						}
+						
+						embedDeck(message, deck.cards, deckCode);
+					});
+				}
+			}
 		}
 	} 
 	if(cmdArray != null){
@@ -880,9 +1002,11 @@ bot.on("message", async message => {
 				var imgSearch;
 				var exclusive = false;
 				if (cmd.substring(0,2) == "++") {
-					imgSearch = {match: { "name.normalized": { "query": cmd.substring(2), "fuzziness": "AUTO" } }};
+					imgSearch = { match_phrase: { name: cmd.substring(2) } };
 					exclusive = true;
-				} else { imgSearch = {match: { "name.normalized": { "query": cmd.substring(1), "fuzziness": "AUTO" } }}; }
+				} else {
+					imgSearch = { match_phrase: { name: cmd.substring(1) } };
+				}
 
 				const query = {
 					size: 1, query: imgSearch
@@ -898,6 +1022,14 @@ bot.on("message", async message => {
 					if (data.hits.total === 0){ message.channel.send("Invalid Card Name"); }
 					else {
 						const card = data.hits.hits[0]._source;
+
+						//Log File Update
+						const date = new Date();
+						const log = "\n" + date.toLocaleString() + " - " + message.author.tag + ": " + card.name;
+						fs.appendFile('cardCalls.txt',log,function(err,data){
+							if (err) console.log(err);
+						});
+
 						// Note: the sku array is guaranteed to have at least 1 default sku for each language
 						var defaultSku;
 						if (exclusive) {
@@ -915,7 +1047,7 @@ bot.on("message", async message => {
 				//console.log('name search '+i+' fired');
 				const query = {
 					size: 1,
-					query: { match: { "name.normalized": { "query": cmd, "fuzziness": "AUTO" } } }
+					query: { match_phrase: { name: cmd } }
 				};
 				const req = fetch("https://carddatabase.warhammerchampions.com/warhammer-cards/_search", {
 					method: "POST",
@@ -924,8 +1056,18 @@ bot.on("message", async message => {
 				});
 				// Display/Use the result
 				req.then((resp) => resp.json()).then((data) => {
+					//console.log(data);
 					if (data.hits.total === 0){ message.channel.send("Invalid Card Name"); }
-					else { nameOutput(message, data.hits.hits[0]._source); }
+					else {
+						//Log File Update
+						const date = new Date();
+						const log = "\n" + date.toLocaleString() + " - " + message.author.tag + ": " + data.hits.hits[0]._source.name;
+						fs.appendFile('cardCalls.txt',log,function(err,data){
+							if (err) console.log(err);
+						});
+
+						nameOutput(message, data.hits.hits[0]._source);
+					}
 				})
 			}
 		}
